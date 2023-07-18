@@ -1,14 +1,18 @@
 import Navbar from "../components/NavBar";
-import homeIMG from '../assets/images/home-page-img1.jpg';
+import HeroSection from "../components/HeroSection";
+
 
 export default function Home() {
   return (
-    <div className="relative">
+    <div className="flex flex-col justify-center">
       <Navbar />
-      <div className="h-screen flex items-center justify-center">
-        <img className="h-auto" src={homeIMG} alt="home-page-image" />
-        <div className="absolute -mt-24 bg-slate-100 flex items-center justify-center w-3/6 h-98">
-          <h1 className="text-2xl text-black">PAR Global</h1>
+      <HeroSection />
+      <div className="flex flex-row justify-center mt-12 mb-12 w-full h-96">
+        <div className='bg-slate-300 w-3/12 h-full ml-1 mr-1'>
+          <img></img>
+        </div>
+        <div className='bg-slate-300 w-3/12 h-full ml-1 mr-1'>
+
         </div>
       </div>
     </div>
