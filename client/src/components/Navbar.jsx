@@ -33,7 +33,7 @@ function NavItem({name , link}) {
 
 const links = [
     {name: 'HOME', link:'/'},
-    {name: 'PRODUCTS', link:'/'},
+    {name: 'PRODUCTS', link:'/products'},
     {name: 'ABOUT US', link:'/'},
     {name: 'CONTACT', link:'/'},
     {name: 'SIGN IN', link:'/signin'},
@@ -43,7 +43,7 @@ const links = [
 export default function Navbar() {
     return(
         <div className="flex text-lg text-bold gap-10 justify-center font-sans text-zinc-50 bg-blue-950 h-32 w-full" >
-            <div className="relative flex flex-row w-6/12 justify-between">
+            <div className="relative flex flex-row min-w-fit w-6/12 justify-between">
                 <div className="w-40 h-32 bg-blue-500"></div>
                 {links.map((item) => <NavItem name={item.name} link={item.link}/>)}
             </div>

@@ -10,13 +10,13 @@ export default function SigninForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         console.log("Username:", username);
         console.log("Password:", password);
+
+        setError('');
         setUsername("");
         setPassword("");
     };
-
 
 
 
