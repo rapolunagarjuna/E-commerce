@@ -9,7 +9,7 @@ export default function HeroSection() {
             <div className="absolute flex flex-col items-center justify-center inset-x-0 bottom-0 w-full h-auto">
                 <div className="bg-slate-100 w-9/12 h-full p-10">
                     <p className="font-bold text-2xl text-slate-900">PAR GLOBAL</p>
-                    <p className="text-xl text-slate-900 mt-5 max-h-44 overflow-auto">
+                    <p className="text-xl text-slate-900 mt-5 max-h-60 overflow-auto">
                         We are one stop manufacturing 
                         solution and service provider for Best in Class Synthetic and Natural 
                         fibre textiles, Industrial and Retail Packaging products, Chemicals, 

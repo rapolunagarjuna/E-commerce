@@ -13,7 +13,7 @@ function NavItem({name , link}) {
   };
 
   return (
-    <div className="w-content pl-5 pt-5 pr-5 justify-end h-full flex flex-col">
+    <div className="self-start w-content pl-5 pt-5 pr-5 justify-end h-full flex flex-col">
       <Link
         className="w-full pt-16"
         to={link}

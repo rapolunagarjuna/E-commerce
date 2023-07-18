@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 
 export default function Home() {
   return (
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-col min-h-screen">
       <Navbar />
       <HeroSection />
       <div className="flex flex-row justify-center mt-12 mb-12 w-full h-96">
@@ -15,7 +15,7 @@ export default function Home() {
 
         </div>
       </div>
-      <Footer />
+      <Footer className='self-end mt-auto'/>
     </div>
   );
 }

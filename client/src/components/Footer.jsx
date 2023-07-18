@@ -6,9 +6,9 @@ import instagramIcon from '../assets/images/instaimg.png';
 
 export default function Footer() {
   return (
-    <div className='bg-slate-900 w-full h-64 px-12'>
-      <div className='flex justify-center h-full'>
-        <div className='w-1/4 p-16'>
+    <div className='bg-slate-900 w-full h-fit pt-10 pb-10 self-end'>
+      <div className='flex flex-row justify-evenly h-full'>
+        <div className='w-fit'>
           <h3 className= 'text-white font-bold'>Products</h3>
           <ul className='mt-2 text-gray-300 text-sm'>
             <li>Geosynthetics</li>
@@ -19,16 +19,17 @@ export default function Footer() {
             <li>Accessories</li>
           </ul>
         </div>
-        <div className='w-1/8 p-16'>
+
+        <div className='w-fit '>
           <h3 className='text-white font-bold'>About Us</h3>
           <ul className='mt-2 text-gray-300 text-sm'>
             <li>Company</li>
             <li>Location</li>
             <li>Team</li>
-
           </ul>
         </div>
-        <div className='w-1/4 p-16'>
+
+        <div className='w-fit '>
           <h3 className='text-white font-bold'>Socials</h3>
           <ul className='mt-2 flex items-center text-gray-300 text-sm'>
             <li><img className='h-6 w-6 mr-2' src={fbIcon} alt='Facebook' /></li>
@@ -37,7 +38,8 @@ export default function Footer() {
             <li><img className='h-6 w-6 mr-2' src={LinkedinIcon} alt='LinkedIn' /></li>
           </ul>
         </div>
-        <div className='w-1/3 p-16'>
+
+        <div className='w-fit '>
           <h4 className='text-white font-bold'>Contact Us</h4>
           <p className='mt-2 text-gray-300 text-sm'>770-544-7392</p>
           <p className='mt-1 text-gray-300 text-sm'>sales@parglobal.us</p>
