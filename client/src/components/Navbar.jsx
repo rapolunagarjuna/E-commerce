@@ -36,7 +36,7 @@ const links = [
     {name: 'PRODUCTS', link:'/'},
     {name: 'ABOUT US', link:'/'},
     {name: 'CONTACT', link:'/'},
-    {name: 'SIGNIN', link:'/'},
+    {name: 'SIGN IN', link:'/signin'},
 ]
 
 
