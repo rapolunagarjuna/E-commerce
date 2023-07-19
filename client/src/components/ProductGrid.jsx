@@ -47,7 +47,7 @@ function Item({name, description, link ,imgSrc}) {
         <div className="flex flex-row justify-center p-5 h-full">
 
             <div className="w-96 h-full ">
-                <img src={imgSrc} className="w-full h-full object-cover" alt=" " />
+                <img src={imgSrc} className="object-cover w-full h-full" alt=" " />
             </div>
 
 

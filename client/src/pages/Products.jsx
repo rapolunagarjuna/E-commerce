@@ -15,7 +15,7 @@ export default function Products() {
             <div className='flex flex-col h-fit min-w-96'>
                 <p className='text-center p-5 text-2xl text-slate-900'>Contact us today to discuss your specific requirements and find the perfect solution for your project.</p>
                 <div className='flex flex-row justify-end'>
-                    <BlueBtn name={'Contact us'} func={()=>navigate('/contact-us')}/>
+                    <BlueBtn name={'Contact us'} func={()=>navigate('/contact')}/>
                 </div> 
             </div>
             
