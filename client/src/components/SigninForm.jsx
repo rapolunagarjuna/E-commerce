@@ -23,7 +23,7 @@ export default function SigninForm() {
     return(
         <div className="p-10 w-fit h-fit bg-slate-200 mx-auto">
             <div >
-                <p className="text-center text-2xl text-slate-900" >Sign in to your account</p>
+                <p className="text-center text-4xl text-slate-900" >Sign in to your account</p>
                 
                 <p className="text-left text-lg text-red-500 pt-3 pl-10 w-full h-10">{error}</p>
 
