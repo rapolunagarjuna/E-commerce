@@ -38,6 +38,7 @@ const links = [
     {name: 'ABOUT', link:'/about'},
     {name: 'CONTACT', link:'/contact'},
     {name: 'SIGN IN', link:'/signin'},
+    {name: 'DASHBOARD', link:'/dashboard'},
 ]
 
 

@@ -5,6 +5,9 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import Products from "./pages/Products";
 import Contact from "./pages/Contact";
+import About from "./pages/About";
+import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
 import Geosynthetics from "./pages/Geosynthetics";
 import ErosionControl from "./pages/ErosionControl.jsx";
 import AgroTextiles from "./pages/AgroTextiles.jsx";
@@ -20,9 +23,10 @@ export default function App() {
         <Route path='/signin' element={<Signin />}></Route>
         <Route path='/register' element={<Signup />}></Route>
         <Route path='/contact' element={<Contact />}></Route>
+        <Route path='/products' element={<Products />}></Route>
         <Route path='/about' element={<About />}></Route>
-        <Route path='/products' element={<Products />}></Route> 
-        <Route path='/products/geosynthetics' element={<Geosynthetics />}></Route> 
+        <Route path='/dashboard' element={<Dashboard />}></Route>
+        <Route path='/products/geosynthetics' element={<Geosynthetics />}></Route>
         <Route path='/products/erosion-control' element={<ErosionControl />}></Route>
         <Route path='/products/agro-textiles' element={<AgroTextiles />}></Route>
         <Route path='/products/industrial-textiles' element={<IndustrialTextiles />}></Route>
