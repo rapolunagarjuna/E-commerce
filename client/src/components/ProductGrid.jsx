@@ -49,20 +49,20 @@ function Item({name, description, link ,imgSrc}) {
     const navigate = useNavigate();
 
     return(
-        <div className="flex flex-row justify-center p-5 h-full">
+        <div className="flex flex-row justify-center p-5">
 
-            <div className="w-96 h-full ">
+            <div style={{width: "450px" ,height: "350px" }}>
                 <img src={imgSrc} className="w-full h-full object-cover" alt=" " />
             </div>
 
 
-            <div className="bg-slate-200 w-96 h-fit ml-4 p-5">
-                <div className="flex  flex-col justify-between">
+            <div className="bg-slate-200  ml-4 p-8" style={{width: "450px" ,height: "350px" }}>
+                <div className="flex flex-col relative h-full w-full">
                     <div className='text-left w-full h-fit'>
-                        <h1 className="text-2xl font-bold pb-2"> {name} </h1>
-                        <p className="text-xl pb-2"> {description} </p>
+                        <p className="text-3xl font-bold pb-2"> {name} </p>
+                        <p className="text-2xl pb-2"> {description} </p>
                     </div>
-                    <div className='flex flex-row justify-end' >
+                    <div className='w-full h-fit absolute bottom-0 right-0 flex flex-row justify-end ' >
                         <BlueBtn func={()=>navigate(link)} name="Learn more" />
                     </div>
                 </div>

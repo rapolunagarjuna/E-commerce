@@ -10,6 +10,7 @@ import ErosionControl from "./pages/ErosionControl.jsx";
 import AgroTextiles from "./pages/AgroTextiles.jsx";
 import IndustrialTextiles from "./pages/IndustrialTextiles.jsx";
 import PackagingTextiles from "./pages/PackagingTextiles";
+import About from "./pages/About";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <Route path='/signin' element={<Signin />}></Route>
         <Route path='/register' element={<Signup />}></Route>
         <Route path='/contact' element={<Contact />}></Route>
+        <Route path='/about' element={<About />}></Route>
         <Route path='/products' element={<Products />}></Route> 
         <Route path='/products/geosynthetics' element={<Geosynthetics />}></Route> 
         <Route path='/products/erosion-control' element={<ErosionControl />}></Route>
