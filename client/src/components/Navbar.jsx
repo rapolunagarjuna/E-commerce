@@ -35,7 +35,7 @@ function NavItem({name , link}) {
 const links = [
     {name: 'HOME', link:'/'},
     {name: 'PRODUCTS', link:'/products'},
-    {name: 'ABOUT US', link:'/'},
+    {name: 'ABOUT', link:'/about'},
     {name: 'CONTACT', link:'/contact'},
     {name: 'SIGN IN', link:'/signin'},
 ]
