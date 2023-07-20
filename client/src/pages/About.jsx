@@ -15,21 +15,26 @@ export default function About() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
-      <div className="flex flex-col">
-        <div className="bg-blue-200 p-4 rounded flex">
-          <img src={aboutimage} className="w-106 h-96 mr-4" alt="About Us" />
-          <div>
-            <h2 style={{ fontWeight: 'bold', fontSize: '20px' }}>Dedicated to serving our clients</h2>
-            <p>
-              PAR Global, headquartered in Georgia-USA, is a one-stop manufacturing solution and service provider for Best in Class Synthetic and Natural fiber textiles, Industrial and Retail Packaging products, Chemicals, Steel, and related Accessories. With over 100 years of combined experience and success in manufacturing, marketing, and sales, we bring world-class products to you as a partner in your success to build a partnership that lasts for generations.
-            </p>
+    <div className="flex flex-col min-h">
+    <Navbar />
+    <div className="flex flex-col p-8">
+        <div className="bg-blue-100 p-8 rounded flex">
+          <img src={aboutimage} className="w-106 h-96 mr-4 " alt="About Us" />
+        <div>
+          <h2 style={{ fontWeight: 'bold', fontSize: '40px', paddingBottom: '20px' }}>Dedicated to serving our clients</h2>
+          <div className="text-l">
+            PAR Global, headquartered in Georgia-USA, is a one-stop manufacturing solution and service provider for Best in Class Synthetic and Natural fiber textiles, Industrial and Retail Packaging products, Chemicals, Steel, and related Accessories. With over 100 years of combined experience and success in manufacturing, marketing, and sales, we bring world-class products to you as a partner in your success to build a partnership that lasts for generations.
           </div>
+          <div className="p-8 font-bold text-xl">
+          Integrity, Ownership, Excellence, Passion and Customer Satisfaction are our core values.
+            </div>
         </div>
+    </div>
 
-        <div className="bg-gray-200 p-4 rounded mt-4">
-          <h2 className="font-bold text-xl">What makes us successful?</h2>
+
+
+        <div className="bg-gray-200 p-8 rounded mt-4">
+          <h2 className="font-bold text-xl p-4">What makes us successful?</h2>
           <ul className="list-disc pl-6">
             <li>Having multiple manufacturing facilities strategically located within India, which meets requirements of several international certification standards including ISO 9001 & 14001, Food Safety, AASHTO NTPEP and CE standards.</li>
             <li>Full range of products in segments such as erosion control, civil & environmental construction, landscaping, small & bulk packaging and industrial chemicals.</li>
@@ -41,12 +46,12 @@ export default function About() {
           </ul>
         </div>
 
-        <h2 style={{ fontWeight: 'bold', fontSize: '24px' }}>Meet the Team</h2>
+        <h2 style={{ fontWeight: 'bold', fontSize: '30px', padding: "25px "}}>Meet the Team</h2>
         <div className="flex">
           {teamMembers.map((member) => (
-            <div key={member.name} className="w-1/6">
+            <div key={member.name} className="w-1/6 p-6">
               <img src={m1image} alt={`Team Member ${member.name}`} className="w-48 h-48" />
-              <h5>{member.name}</h5>
+              <h5 style={{ fontWeight: 'bold'}} >{member.name}</h5>
               <p>{member.designation}</p>
               <p>{member.email}</p>
             </div>
