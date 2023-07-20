@@ -1,5 +1,5 @@
 import ItemGrid from '../components/ItemGrid'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/NavBar'
 import Footer from '../components/Footer'
 
 import image from '../assets/images/industrial-textiles/POLY LINERS.webp'

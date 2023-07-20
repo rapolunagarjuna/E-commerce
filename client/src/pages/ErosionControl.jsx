@@ -1,5 +1,5 @@
 import ItemGrid from '../components/ItemGrid'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/NavBar'
 import Footer from '../components/Footer'
 import image from '../assets/images/erosion-control/SAND BAGS.webp'
 import image1 from '../assets/images/erosion-control/DEWATERINGBAGS.webp'

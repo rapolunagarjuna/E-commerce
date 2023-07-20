@@ -2,6 +2,7 @@ import React from "react";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Home from "./pages/Home";
 import Signin from "./pages/Signin";
+import Signup from "./pages/Signup";
 import Products from "./pages/Products";
 import Contact from "./pages/Contact";
 import Geosynthetics from "./pages/Geosynthetics";
@@ -18,8 +19,8 @@ export default function App() {
         <Route path='/signin' element={<Signin />}></Route>
         <Route path='/register' element={<Signup />}></Route>
         <Route path='/contact' element={<Contact />}></Route>
-        <Route path='/products' element={<Products />}></Route>
-        <Route path='/products/geosynthetics' element={<Geosynthetics />}></Route>
+        <Route path='/products' element={<Products />}></Route> 
+        <Route path='/products/geosynthetics' element={<Geosynthetics />}></Route> 
         <Route path='/products/erosion-control' element={<ErosionControl />}></Route>
         <Route path='/products/agro-textiles' element={<AgroTextiles />}></Route>
         <Route path='/products/industrial-textiles' element={<IndustrialTextiles />}></Route>
