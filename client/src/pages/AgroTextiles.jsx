@@ -1,5 +1,5 @@
 import ItemGrid from '../components/ItemGrid'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/NavBar'
 import Footer from '../components/Footer'
 import image from '../assets/images/agro-textiles/AGRI-LINERS.webp'
 import image1 from '../assets/images/agro-textiles/AGRICULTURE-BARN-CURTAIN.webp'

@@ -46,8 +46,8 @@ export default function Navbar() {
     return(
         <div className="flex text-lg text-bold gap-10 justify-center font-sans text-zinc-50 bg-blue-950 h-32 w-full" >
             <div className="relative flex flex-row min-w-fit w-6/12 justify-between">
-                <div className="w-40 h-32 bg-blue-100 p-3">
-                  <img src={logo} className="w-full h-full" alt="logo" />
+                <div className="w-40 h-32 bg-slate-50 p-3">
+                  <img src={logo} className="w-full h-full brightness-100" alt="logo" />
                 </div>
                 {links.map((item) => <NavItem name={item.name} link={item.link}/>)}
             </div>

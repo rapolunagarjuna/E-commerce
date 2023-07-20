@@ -1,5 +1,5 @@
 import ItemGrid from '../components/ItemGrid'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/NavBar'
 import Footer from '../components/Footer'
 import image from '../assets/images/geosynthetics/SILT-FENCE.webp'
 import image1 from '../assets/images/geosynthetics/WOVEN GEOTEXTILE.webp'
