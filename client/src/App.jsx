@@ -5,6 +5,7 @@ import Signin from "./pages/Signin";
 import Products from "./pages/Products";
 import Contact from "./pages/Contact";
 import Signup from "./pages/Signup";
+import About from "./pages/About";
 
 export default function App() {
   return (
