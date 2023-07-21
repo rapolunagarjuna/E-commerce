@@ -1,19 +1,34 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import BlueBtn from './BlueBtn' 
+import { useNavigate } from "react-router-dom";
 
 export default function SigninForm() {
-    
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        setError('');
-        setEmail("");
-        setPassword("");
+        fetch('http://localhost:3000/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })}).then(response => {
+                if (response.status === 200) {
+                    setError('');
+                    navigate('/dashboard', {replace: true});
+                }
+            }).catch(error => {
+                if (error.response) {
+                    setError(error.response.data.error);
+                }
+            });
     };
 
 
@@ -34,7 +49,7 @@ export default function SigninForm() {
                         id="email"
                         placeholder="Enter email here"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => {setEmail(e.target.value); setError('');} }
                         />
                     </div>
                     <div className="flex flex-col text-left text-2xl text-slate-900 mt-5 mb-5">
@@ -45,7 +60,7 @@ export default function SigninForm() {
                         id="password"
                         placeholder="Enter password here"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => {setPassword(e.target.value); setError('');} }
                         />
                     </div>
 

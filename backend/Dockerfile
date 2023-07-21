@@ -10,7 +10,7 @@ COPY package*.json ./
 RUN npm install
 
 # Copy the app source code
-COPY . .
+COPY . ./
 
 # Expose port
 EXPOSE 3000

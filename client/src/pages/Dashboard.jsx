@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
+import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
 
 // Sample product images (Replace these with your actual product images)
@@ -11,7 +11,7 @@ import image4 from '../assets/images/geosynthetics/SAFETY FENCE.webp'
 import image5 from '../assets/images/geosynthetics/NON-WOVEN-GEOTEXTILE.webp'
 import image6 from '../assets/images/erosion-control/SAND BAGS.webp'
 import image7 from '../assets/images/erosion-control/DEWATERINGBAGS.webp'
-import image8 from '../assets/images/erosion-control/GABIONs.webp'
+import image8 from '../assets/images/erosion-control/GABIONS.webp'
 import image9 from '../assets/images/erosion-control/COIRS.webp'
 import image10 from '../assets/images/erosion-control/JUTE-BURLAP.webp'
 import image11 from '../assets/images/industrial-textiles/POLY LINERS.webp'

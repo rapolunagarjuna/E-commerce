@@ -2,18 +2,18 @@ import React from "react";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Home from "./pages/Home";
 import Signin from "./pages/Signin";
+
 import Signup from "./pages/Signup";
 import Products from "./pages/Products";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
-import Signup from "./pages/Signup";
+
 import Dashboard from "./pages/Dashboard";
 import Geosynthetics from "./pages/Geosynthetics";
 import ErosionControl from "./pages/ErosionControl.jsx";
 import AgroTextiles from "./pages/AgroTextiles.jsx";
 import IndustrialTextiles from "./pages/IndustrialTextiles.jsx";
 import PackagingTextiles from "./pages/PackagingTextiles";
-import About from "./pages/About";
 
 export default function App() {
   return (

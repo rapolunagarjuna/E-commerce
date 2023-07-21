@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import BlueBtn from './BlueBtn' 
+import axios from "axios";
 
 export default function SignupForm() {
     
+    const navigate = useNavigate();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -11,14 +14,31 @@ export default function SignupForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("First Name:", firstName);
-        console.log("Last Name:", lastName);
-        console.log("Username:", email);
-        console.log("Password:", password);
-
+        
         setError('');
-        setEmail("");
-        setPassword("");
+
+        axios.post('http://localhost:3000/api/users', {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password
+        }, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.status === 200 || response.status === 204) {
+                setError('');
+                navigate('/dashboard', {replace: true});
+            }
+        })
+        .catch(error => {
+            if (error.response) {
+                setError(error.response.data.error);
+            }
+        });
+
     };
 
 
@@ -40,7 +60,7 @@ export default function SignupForm() {
                         id="firstName"
                         placeholder="Enter your first name here"
                         value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
+                        onChange={(e) => {setFirstName(e.target.value); setError('');}}
                         />
                     </div>
 
@@ -52,7 +72,7 @@ export default function SignupForm() {
                         id="lastName"
                         placeholder="Enter your last name here"
                         value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
+                        onChange={(e) => {setLastName(e.target.value); setError('');}}
                         />
                     </div>
 
@@ -64,7 +84,7 @@ export default function SignupForm() {
                         id="email"
                         placeholder="Enter email here"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => {setEmail(e.target.value); setError('');}}
                         />
                     </div>
                     <div className="flex flex-col text-left text-2xl text-slate-900 mt-5 mb-5">
@@ -75,7 +95,7 @@ export default function SignupForm() {
                         id="password"
                         placeholder="Enter password here"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => {setPassword(e.target.value); setError('');}}
                         />
                     </div>
 
