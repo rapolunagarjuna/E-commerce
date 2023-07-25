@@ -44,67 +44,65 @@ export default function SignupForm() {
 
 
     return(
-        <div className="p-10 w-fit h-fit bg-slate-200 mx-auto">
-            <div >
-                <p className="text-center text-4xl text-slate-900" >Sign up for a new account</p>
+        <div className="p-10 w-4/12 min-w-max h-fit text-primary mx-auto">
+            <p className="text-center text-4xl " >Sign up for a new account</p>
                 
-                <p className="text-left text-lg text-red-500 pt-3 pl-10 w-full h-10">{error}</p>
+            <p className="text-left text-lg text-red-500 pt-3 pl-10 w-full h-10">{error}</p>
 
-                <form className="pl-10 pr-10 pb-10 gap-10" >
+            <form className="pl-10 pr-10 pb-10 gap-10 w-full min-w-max" >
+                
+                <div className="flex flex-col text-left text-2xl  mt-5 mb-5" >
+                    <label  htmlFor="firstName">First Name</label>
+                    <input
+                    type="text"
+                    className="text-lg min-w-96 mt-3 p-3 border border-primary"
+                    id="firstName"
+                    placeholder="Enter your first name here"
+                    value={firstName}
+                    onChange={(e) => {setFirstName(e.target.value); setError('');}}
+                    />
+                </div>
+
+                <div className="flex flex-col text-left text-2xl  mt-5 mb-5" >
+                    <label  htmlFor="lastName">Last Name</label>
+                    <input
+                    type="text"
+                    className="text-lg min-w-96 mt-3 p-3 border border-primary"
+                    id="lastName"
+                    placeholder="Enter your last name here"
+                    value={lastName}
+                    onChange={(e) => {setLastName(e.target.value); setError('');}}
+                    />
+                </div>
+
+                <div className="flex flex-col text-left text-2xl  mt-5 mb-5" >
+                    <label  htmlFor="email">E-mail</label>
+                    <input
+                    type="email"
+                    className="text-lg min-w-96 mt-3 p-3 border border-primary"
+                    id="email"
+                    placeholder="Enter email here"
+                    value={email}
+                    onChange={(e) => {setEmail(e.target.value); setError('');}}
+                    />
+                </div>
+                <div className="flex flex-col text-left text-2xl  mt-5 mb-5">
+                    <label htmlFor="password">Password</label>
+                    <input
+                    className="text-lg min-w-96 mt-3 p-3 border border-primary"
+                    type="password"
+                    id="password"
+                    placeholder="Enter password here"
+                    value={password}
+                    onChange={(e) => {setPassword(e.target.value); setError('');}}
+                    />
+                </div>
+
+                <div className="flex flex-row justify-end">
                     
-                    <div className="flex flex-col text-left text-2xl text-slate-900 mt-5 mb-5" >
-                        <label  htmlFor="firstName">First Name</label>
-                        <input
-                        type="text"
-                        className="text-lg w-96 mt-3 p-3"
-                        id="firstName"
-                        placeholder="Enter your first name here"
-                        value={firstName}
-                        onChange={(e) => {setFirstName(e.target.value); setError('');}}
-                        />
-                    </div>
-
-                    <div className="flex flex-col text-left text-2xl text-slate-900 mt-5 mb-5" >
-                        <label  htmlFor="lastName">Last Name</label>
-                        <input
-                        type="text"
-                        className="text-lg w-96 mt-3 p-3"
-                        id="lastName"
-                        placeholder="Enter your last name here"
-                        value={lastName}
-                        onChange={(e) => {setLastName(e.target.value); setError('');}}
-                        />
-                    </div>
-
-                    <div className="flex flex-col text-left text-2xl text-slate-900 mt-5 mb-5" >
-                        <label  htmlFor="email">E-mail</label>
-                        <input
-                        type="email"
-                        className="text-lg w-96 mt-3 p-3"
-                        id="email"
-                        placeholder="Enter email here"
-                        value={email}
-                        onChange={(e) => {setEmail(e.target.value); setError('');}}
-                        />
-                    </div>
-                    <div className="flex flex-col text-left text-2xl text-slate-900 mt-5 mb-5">
-                        <label htmlFor="password">Password</label>
-                        <input
-                        className="text-lg w-96 mt-3 p-3"
-                        type="password"
-                        id="password"
-                        placeholder="Enter password here"
-                        value={password}
-                        onChange={(e) => {setPassword(e.target.value); setError('');}}
-                        />
-                    </div>
-
-                    <div className="flex flex-row justify-end">
-                        
-                        <BlueBtn name='Sign up' func={handleSubmit} />
-                    </div>                    
-                </form>
-            </div>
+                    <BlueBtn name='Sign up' func={handleSubmit} />
+                </div>                    
+            </form>
         </div>
     )
 }

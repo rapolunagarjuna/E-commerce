@@ -4,11 +4,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    fontFamily: {
-      'sans': ['Poppins', 'sans-serif' ]
-    },
-
-    extend: {},
+    extend: {
+      colors: {
+        "primary": "#172554",
+        "secondary": "#d9f99d",
+      }
+    }
   },
   plugins: [],
 }

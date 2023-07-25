@@ -34,28 +34,28 @@ export default function SigninForm() {
 
 
     return(
-        <div className="p-10 w-fit h-fit bg-slate-200 mx-auto">
+        <div className="p-10 w-4/12 min-w-max h-fit mx-auto text-primary">
             <div >
-                <p className="text-center text-4xl text-slate-900" >Sign in to your account</p>
+                <p className="text-center text-4xl " >Sign in to your account</p>
                 
                 <p className="text-left text-lg text-red-500 pt-3 pl-10 w-full h-10">{error}</p>
 
                 <form className="pl-10 pr-10 pb-10 gap-10" >
-                    <div className="flex flex-col text-left text-2xl text-slate-900 mt-5 mb-5" >
-                        <label  htmlFor="email">E-mail</label>
+                    <div className="flex flex-col text-left text-2xl  mt-5 mb-5" >
+                        <p>E-mail</p>
                         <input
                         type="email"
-                        className="text-lg w-96 mt-3 p-3"
+                        className="text-lg min-w-96 mt-3 p-3 border border-primary"
                         id="email"
                         placeholder="Enter email here"
                         value={email}
                         onChange={(e) => {setEmail(e.target.value); setError('');} }
                         />
                     </div>
-                    <div className="flex flex-col text-left text-2xl text-slate-900 mt-5 mb-5">
-                        <label htmlFor="password">Password</label>
+                    <div className="flex flex-col text-left text-2xl  mt-5 mb-5">
+                        <p>Password</p>
                         <input
-                        className="text-lg w-96 mt-3 p-3"
+                        className="text-lg min-w-96 border border-primary mt-3 p-3"
                         type="password"
                         id="password"
                         placeholder="Enter password here"
@@ -64,9 +64,9 @@ export default function SigninForm() {
                         />
                     </div>
 
-                    <div className="flex flex-row justify-between">
-                        <div className='flex flex-col w-fit h-fit text-sm underline underline-offset-1 text-slate-900'>
-                        <Link className='text-sm underline underline-offset-1 text-slate-900' to="/reset-password">Reset your password</Link>
+                    <div className="flex flex-row justify-between min-w-fit">
+                        <div className='flex flex-col w-fit mr-5 h-fit text-sm underline underline-offset-1 '>
+                            <Link className='text-sm underline underline-offset-1 ' to="/reset-password">Reset your password</Link>
                             <Link to="/register">Don't have an account?</Link>
                         </div>
                         <BlueBtn name='Sign in' func={handleSubmit} />

@@ -6,12 +6,7 @@ import BlueBtn from "../components/BlueBtn";
 import { useNavigate } from "react-router-dom";
 import innovativeImg from '../assets/images/innovative.png';
 
-import passion from '../assets/images/values/passion.jpg';
-import excellence from '../assets/images/values/excellence.jpg';
-import integrity from '../assets/images/values/integrity.jpg';
-import customerSatisfaction from '../assets/images/values/customer-satisfaction.jpg';
 
-import coverImage from '../assets/images/cover-page-excellence.jpg';
 
 
 export default function About() {

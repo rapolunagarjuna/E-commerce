@@ -2,7 +2,6 @@ import Navbar from "../components/NavBar";
 import HeroSection from "../components/HeroSection";
 import Footer from '../components/Footer';
 import BlueBtn from "../components/BlueBtn";
-import news from '../assets/images/news.jpg';
 
 export default function Home() {
 

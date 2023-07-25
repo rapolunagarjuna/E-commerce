@@ -14,20 +14,15 @@ function NavItem({name , link}) {
   };
 
   return (
-    <div className="self-start w-content pl-5 pt-5 pr-5 justify-end h-full flex flex-col">
+    <div className="self-start w-content pl-5 pt-5 pr-5 justify-center items-center h-full flex flex-col">
       <Link
-        className="w-full pt-16"
+        className="m-auto w-full text-xl text-center hover:text-secondary"
         to={link}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         {name}
       </Link>
-      <div
-        className={`w-full h-1 bg-slate-100 ${
-          isHovered ? "block" : "hidden"
-        }`}
-      ></div>
     </div>
   );
 }
@@ -43,9 +38,9 @@ const links = [
 
 export default function Navbar() {
     return(
-        <div className="flex text-lg text-bold gap-10 justify-center font-sans text-zinc-50 bg-blue-950 h-32 w-full" >
+        <div className="flex text-lg text-bold gap-10 justify-center text-primary  h-28 w-full" >
             <div className="relative flex flex-row min-w-fit w-6/12 justify-between">
-                <div className="w-40 h-32 bg-slate-50 p-3">
+                <div className="w-40 h-32 p-4">
                   <img src={logo} className="w-full h-full brightness-100" alt="logo" />
                 </div>
                 {links.map((item) => <NavItem name={item.name} link={item.link}/>)}
