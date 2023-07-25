@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import BlueBtn from './BlueBtn'
 import image1 from '../assets/images/geosynthetics.jpg';
 import image2 from '../assets/images/erosioncontrol.jpg';
 import image3 from '../assets/images/industrialtextiles.jpg';
@@ -49,21 +48,17 @@ function Item({name, description, link ,imgSrc}) {
     const navigate = useNavigate();
 
     return(
-        <div className="flex flex-row justify-center p-5">
-
-            <div style={{width: "450px" ,height: "350px" }}>
+        <div className="flex flex-col justify-center gap-10 text-primary">
+            <div style={{height: "350px" }}>
                 <img src={imgSrc} className="w-full h-full object-cover" alt=" " />
             </div>
 
-
-            <div className="bg-slate-200  ml-4 p-8" style={{width: "450px" ,height: "350px" }}>
-                <div className="flex flex-col relative h-full w-full">
-                    <div className='text-left w-full h-fit'>
-                        <p className="text-3xl font-bold pb-2"> {name} </p>
-                        <p className="text-2xl pb-2"> {description} </p>
-                    </div>
-                    <div className='w-full h-fit absolute bottom-0 right-0 flex flex-row justify-end ' >
-                        <BlueBtn func={()=>navigate(link)} name="Learn more" />
+            <div className="h-fit" >
+                <div className="flex flex-col relative " > 
+                    <div className='text-left h-fit'>
+                        <p className="text-3xl xl:text-2xl lg:text-2xl md:text-2xl sm:text-2xl font-bold pb-2"> {name} </p>
+                        <p className="text-2xl xl:text-xl lg:text-xl md:text-xl sm:text-xl pb-2"> {description} </p>
+                        <p className='text-lg text-right text-green-600 hover:text-red-500' onClick={()=>navigate(link)}>Discover more</p>
                     </div>
                 </div>
             </div>
@@ -75,7 +70,7 @@ function Item({name, description, link ,imgSrc}) {
 
 export default function ProductGrid() {
     return(
-        <div className='flex flex-col w-full pt-20 pb-20'>
+        <div className='grid mx-auto 2xl:w-9/12 2xl:grid-cols-3  w-10/12 xl:grid-cols-2 sm:grid-cols-1 gap-x-4 gap-y-16 pb-44 place-items-start'>
             {products.map(product => 
             <Item 
                 key={product.name} 
