@@ -1,5 +1,4 @@
 import { useState } from "react";
-import ReactSelect from "react-select";
 import BlueBtn from '../components/BlueBtn';
 import GreenBtn from '../components/GreenBtn';
 import CustomSelect from "./CustomSelect";
