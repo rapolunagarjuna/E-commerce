@@ -57,8 +57,8 @@ function Item({name, description, link ,imgSrc}) {
                 <div className="flex flex-col relative " > 
                     <div className='text-left h-fit'>
                         <p className="text-3xl xl:text-2xl lg:text-2xl md:text-2xl sm:text-2xl font-bold pb-2"> {name} </p>
-                        <p className="text-2xl xl:text-xl lg:text-xl md:text-xl sm:text-xl pb-2"> {description} </p>
-                        <p className='text-lg text-right text-green-600 hover:text-red-500' onClick={()=>navigate(link)}>Discover more</p>
+                        <p className="text-xl pb-2"> {description} </p>
+                        <p className='text-lg text-right transition ease-in-out delay-100 hover:translate-y-1 hover:scale-110 duration-200 text-green-600 hover:text-red-500' onClick={()=>navigate(link)}>Discover more</p>
                     </div>
                 </div>
             </div>
