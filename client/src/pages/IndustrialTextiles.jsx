@@ -2,11 +2,11 @@ import ItemGrid from '../components/ItemGrid'
 import Navbar from '../components/NavBar'
 import Footer from '../components/Footer'
 
-import image from '../assets/images/industrial-textiles/POLYLINERS.webp'
+import image from '../assets/images/industrial-textiles/POLY LINERS.webp'
 import image1 from '../assets/images/industrial-textiles/WOVEN-COATED-PE-GEO-MEMBRANE.webp'
 import image2 from '../assets/images/industrial-textiles/ROOF-UNDERLAYMENT.webp'
 import image3 from '../assets/images/industrial-textiles/TARPS.webp'
-import image4 from '../assets/images/industrial-textiles/HOUSEWRAP.webp'
+import image4 from '../assets/images/industrial-textiles/HOUSE WRAP.webp'
 import image5 from '../assets/images/industrial-textiles/LUMBER-WRAP.webp'
 
 

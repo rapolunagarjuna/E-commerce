@@ -1,24 +1,29 @@
-import CustomSelect from "./CustomSelect";
+import ProductPage from "../pages/ProductPage";
+import image from "../assets/images/about.jpg";
 
-const options = [
-  {
-    value: 'option1',
-    label: 'Option 1',
-  },
-  {
-    value: 'option2',
-    label: 'Option 2',
-  },
-  {
-    value: 'option3',
-    label: 'Option 3',
-  }
-];
 
 export default function Test() {
-    return(
-        <div className="m-auto w-96">
-            <CustomSelect options={options} value="option1" />
-        </div>
-    );
+  const product = { 
+    title: "title",
+    description: "description",
+    category: "geosynthetics",
+    imgSrc: image,
+    dimensions: [
+        {value: "EC23", label: "Option 1"},
+        {value: "EC24", label: "Option 2"},
+        {value: "EC25", label: "Option 3"},
+    ],
+  };
+
+  const cart = [
+      {productID: "EC25", quantity: 30, category: "geosynthetics", price: 300},
+      {productID: "EC24", quantity: 20, category: "geosynthetics", price: 200},
+  ];
+
+
+  return (
+      <div>
+          <ProductPage product={product} cart={cart}/>
+      </div>
+  )
 }

@@ -2,11 +2,11 @@ import ItemGrid from '../components/ItemGrid'
 import Navbar from '../components/NavBar'
 import Footer from '../components/Footer'
 import image from '../assets/images/geosynthetics/SILT-FENCE.webp'
-import image1 from '../assets/images/geosynthetics/WGEOTEXTILE.webp'
-import image2 from '../assets/images/geosynthetics/PAVING.webp'
-import image3 from '../assets/images/geosynthetics/WIREBACK.webp'
-import image4 from '../assets/images/geosynthetics/SFENCE.webp'
-import image5 from '../assets/images/geosynthetics/NWOVEN.webp'
+import image1 from '../assets/images/geosynthetics/WOVEN GEOTEXTILE.webp'
+import image2 from '../assets/images/geosynthetics/PAVING -RETENTION GRID.webp'
+import image3 from '../assets/images/geosynthetics/WIREBACK_SILT_FENCE.webp'
+import image4 from '../assets/images/geosynthetics/SAFETY FENCE.webp'
+import image5 from '../assets/images/geosynthetics/NON-WOVEN-GEOTEXTILE.webp'
 
 const products = [
     {
@@ -16,7 +16,6 @@ const products = [
         signele : "Our products provide UV endurance performance of 500-1000 hours, guaranteeing durability and longevity.",
         enq: 'For more techical information are available upon enquiry Geosynthetics',
         imgSrc: image
-
     },
     {
         name: 'Woven Geotextile',
@@ -60,8 +59,6 @@ export default function Geosynthetics() {
     return(
         <>
             <Navbar />
-            <div ></div>
-            
             <p className='text-5xl text-center font-extrabold pt-16'>GeoSynthetics</p>
             <ItemGrid products={products} />
             <Footer />

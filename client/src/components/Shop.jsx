@@ -1,7 +1,6 @@
 import { useState } from "react";
-import BlueBtn from './BlueBtn';
-import GreenBtn from './GreenBtn';
-
+import BlueBtn from '../components/BlueBtn';
+import GreenBtn from '../components/GreenBtn';
 import CustomSelect from "./CustomSelect";
 
 const options = [
@@ -63,17 +62,11 @@ function Item({ item, cart, setCart }) {
                 <div className="w-6/12 h-full flex flex-col justify-end text-xl">
                     <p>Product dimensions:</p>
                     <div className="pl-6">
-                        {/* <CustomSelect
-                            options={selectOptions}
-                            value={activeOption}
-                            onChange={handleOptionChange}
-                        /> */}
                         <CustomSelect
                             options={options}
                             value={options[0].value}
                             onChange={handleOptionChange}
                         />
-
                     </div>
                     
                     <div className="mt-6 w-full flex flex-col">

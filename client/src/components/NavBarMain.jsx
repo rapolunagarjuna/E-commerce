@@ -24,7 +24,7 @@ function NavItem({name , link}) {
   return (
     <div className="self-start w-content pl-5 pt-5 pr-5 justify-center items-center h-full flex flex-col">
       {link === '/signout' ?  
-        <div className="m-auto w-full text-xl text-center hover:text-secondary" onClick={handleSignOut}>{name}</div>
+        <div className="m-auto w-full text-xl text-center hover:cursor-pointer hover:text-secondary" onClick={handleSignOut}>{name}</div>
         : <Link
             className="m-auto w-full text-xl text-center hover:text-secondary"
             to={link}
@@ -32,6 +32,7 @@ function NavItem({name , link}) {
             onMouseLeave={handleMouseLeave}
           >{name}</Link>}
     </div>
+    
   );
 }
 
@@ -85,7 +86,7 @@ function CustomSelect({ options, value, onChange}) {
 
   return (
       <div ref={node} className="w-full flex flex-col relative">
-          <div className="justify-end text-primary  text-xl w-full h-min flex flex-row">
+          <div className="justify-end text-primary  text-xl w-full h-min flex flex-row hover:cursor-pointer" onClick={toggleDropdown}>
               <span className=" text-center w-full h-fit hover:text-secondary">{currentLabel}</span>
               <div className="justify-center items-center ml-3 h-7 w-10" onClick={toggleDropdown}>
                   <img src={ dwnArrow } className="h-full w-full object-contain object-center" />
@@ -104,7 +105,7 @@ function SelectNavItem({value , options}) {
   const name = options.find((option) => option.value === value)?.label;
 
   const handleOnChange = (selectedOption) => {
-    navigate(selectedOption.link, { replace: true });
+    navigate(selectedOption.link);
 };
 
   return(
@@ -126,12 +127,12 @@ const links = [
 
 const categories = [
   {value: "categories" , label: 'Categories', link: '/categories'},
-  {value: "geosynthetics", label: 'Geosynthetics', link: '/categories/geosynthetics'}, 
-  {value: "industrial-textiles", label: 'Industrial Textiles', link: '/categories/industrial-textiles'},
-  {value: "agro-textiles", label: 'Agro Textiles' , link: '/categories/agro-textiles'},
-  {value: "accessories", label: 'Accessories', link: '/categories/accessories'},
-  {value: "packaging-textiles", label: 'Packaging Textiles', link: '/categories/packaging-textiles'},
-  {value: "erosion-control", label: 'Erosion Control', link: '/categories/erosion-control'},
+  {value: "geosynthetics", label: 'Geosynthetics', link: 'categories/geosynthetics'}, 
+  {value: "industrial-textiles", label: 'Industrial Textiles', link: 'categories/industrial-textiles'},
+  {value: "agro-textiles", label: 'Agro Textiles' , link: 'categories/agro-textiles'},
+  {value: "accessories", label: 'Accessories', link: '/accessories'},
+  {value: "packaging-textiles", label: 'Packaging Textiles', link: 'categories/packaging-textiles'},
+  {value: "erosion-control", label: 'Erosion Control', link: 'categories/erosion-control'},
 ]
 
 export default function NavBarMain() {

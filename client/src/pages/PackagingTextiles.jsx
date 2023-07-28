@@ -1,10 +1,10 @@
 import ItemGrid from '../components/ItemGrid'
 import Navbar from '../components/NavBar'
 import Footer from '../components/Footer'
-import image from '../assets/images/packaging-textiles/CONTAINERLINERS.webp'
-import image1 from '../assets/images/packaging-textiles/BOPPBAGS.webp'
-import image2 from '../assets/images/packaging-textiles/DUNNAGEBAGS.webp'
-import image3 from '../assets/images/packaging-textiles/BULKBAGS-SMALLBAGS.webp'
+import image from '../assets/images/packaging-textiles/CONTAINER LINERS.webp'
+import image1 from '../assets/images/packaging-textiles/BOPP BAGS.webp'
+import image2 from '../assets/images/packaging-textiles/DUNNAGE BAGS.webp'
+import image3 from '../assets/images/packaging-textiles/BULK BAGS-SMALL BAGS.webp'
 
 
 const products=[
