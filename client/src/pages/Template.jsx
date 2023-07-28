@@ -113,7 +113,8 @@ const EC = {
         
         ]
     };
-    const IT = { 
+
+const IT = { 
         title: 'Industrial Textiles',
         backgroundImage: bgImg3,
         products : [ 
@@ -149,6 +150,7 @@ const EC = {
         }
     ]
 };
+
 const AT = { 
     title: 'Agro-Textiles',
     backgroundImage: bgImg4,
@@ -190,6 +192,7 @@ const AT = {
         }
     ]
 };
+
 const PT={
     title : "Packaging Textiles",
     backgroundImage : bgImg5,
@@ -216,6 +219,7 @@ const PT={
     }
 ]
 };
+
 const AC = {
     title : 'Accessories',
     imgSrc : bgImg6,
@@ -291,7 +295,9 @@ export default function Template() {
 
     return (
         <>  
+            <NavBarMain />
             {renderProducts()}
+            <Footer />
         </>
         
     );

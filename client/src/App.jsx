@@ -7,21 +7,14 @@ import Signup from "./pages/Signup";
 import Products from "./pages/Products";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import Orders from "./pages/Orders";
+import Cart from "./pages/Cart";
+import Invoice from "./pages/Invoice";
 
-import Dashboard from "./pages/Dashboard";
-import Categories from "./pages/Categories";
-
-import Geosynthetics from "./pages/Geosynthetics";
-import ErosionControl from "./pages/ErosionControl.jsx";
-import AgroTextiles from "./pages/AgroTextiles.jsx";
-import IndustrialTextiles from "./pages/IndustrialTextiles.jsx";
-import PackagingTextiles from "./pages/PackagingTextiles";
-
-
-
+import Categories from "./pages/Categories"
+import Template from "./pages/Template";
 import GeoSyntheticpg from "./components/ProdGrid";
 import Test from "./components/Test";
-import Template from "./pages/Template";
 
 
 export default function App() {
@@ -38,6 +31,7 @@ export default function App() {
         <Route path='/test' element={<Test />}></Route>
         <Route path='/geosynthetics' element ={<GeoSyntheticpg  />}></Route>
         <Route path='/categories' element={<Categories />}></Route>
+        <Route path='/categories/:category' element={<Template />}></Route>
         <Route path='/cart' element={<Cart />}></Route>
         <Route path='/orders' element={<Orders />}></Route>
         <Route path='/invoice/:orderNumber' element={<Invoice />}></Route>
@@ -62,6 +56,7 @@ import Cart from "./pages/Cart";
 import Orders from "./pages/Orders";
 import Invoice from "./pages/Invoice";
 import Test from "./components/Test";
+import Template from "./pages/Template";
 
 
 export default function App() {
