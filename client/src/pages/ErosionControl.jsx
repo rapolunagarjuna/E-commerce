@@ -1,7 +1,7 @@
 import ItemGrid from '../components/ItemGrid'
 import Navbar from '../components/NavBar'
 import Footer from '../components/Footer'
-import image from '../assets/images/erosion-control/SAND BAGS.webp'
+import image from '../assets/images/erosion-control/SANDBAGS.webp'
 import image1 from '../assets/images/erosion-control/DEWATERINGBAGS.webp'
 import image2 from '../assets/images/erosion-control/GABIONS.webp'
 import image3 from '../assets/images/erosion-control/COIRS.webp'

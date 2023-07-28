@@ -1,6 +1,7 @@
 import { useState } from "react";
-import BlueBtn from '../components/BlueBtn';
-import GreenBtn from '../components/GreenBtn';
+import BlueBtn from './BlueBtn';
+import GreenBtn from './GreenBtn';
+
 import CustomSelect from "./CustomSelect";
 
 const options = [

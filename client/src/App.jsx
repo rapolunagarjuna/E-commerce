@@ -7,11 +7,21 @@ import Signup from "./pages/Signup";
 import Products from "./pages/Products";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+
+import Dashboard from "./pages/Dashboard";
 import Categories from "./pages/Categories";
-import Cart from "./pages/Cart";
-import Orders from "./pages/Orders";
-import Invoice from "./pages/Invoice";
+
+import Geosynthetics from "./pages/Geosynthetics";
+import ErosionControl from "./pages/ErosionControl.jsx";
+import AgroTextiles from "./pages/AgroTextiles.jsx";
+import IndustrialTextiles from "./pages/IndustrialTextiles.jsx";
+import PackagingTextiles from "./pages/PackagingTextiles";
+
+
+
+import GeoSyntheticpg from "./components/ProdGrid";
 import Test from "./components/Test";
+import Template from "./pages/Template";
 
 
 export default function App() {
