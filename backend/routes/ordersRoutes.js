@@ -8,7 +8,7 @@ const {
   getSingleOrder, 
   getOrdersByUser, 
   updateOrderStatus 
-} = require('../controllers/orderController');
+} = require('../controllers/orders');
 
 
 

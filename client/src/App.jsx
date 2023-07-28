@@ -7,15 +7,10 @@ import Signup from "./pages/Signup";
 import Products from "./pages/Products";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
-
-import Dashboard from "./pages/Dashboard";
 import Categories from "./pages/Categories";
-import Geosynthetics from "./pages/Geosynthetics";
-import ErosionControl from "./pages/ErosionControl.jsx";
-import AgroTextiles from "./pages/AgroTextiles.jsx";
-import IndustrialTextiles from "./pages/IndustrialTextiles.jsx";
-import PackagingTextiles from "./pages/PackagingTextiles";
-
+import Cart from "./pages/Cart";
+import Orders from "./pages/Orders";
+import Invoice from "./pages/Invoice";
 import Test from "./components/Test";
 
 
@@ -29,15 +24,13 @@ export default function App() {
         <Route path='/contact' element={<Contact />}></Route>
         <Route path='/products' element={<Products />}></Route>
         <Route path='/about' element={<About />}></Route>
-        {/* <Route path='/dashboard' element={<Customer />}></Route> */}
         
         <Route path='/test' element={<Test />}></Route>
         <Route path='/categories' element={<Categories />}></Route>
-        {/* <Route path='/products/geosynthetics' element={<Geosynthetics />}></Route>
-        <Route path='/products/erosion-control' element={<ErosionControl />}></Route>
-        <Route path='/products/agro-textiles' element={<AgroTextiles />}></Route>
-        <Route path='/products/industrial-textiles' element={<IndustrialTextiles />}></Route>
-        <Route path='/products/packaging-textiles' element={<PackagingTextiles />}></Route>   */}
+        <Route path='/cart' element={<Cart />}></Route>
+        <Route path='/orders' element={<Orders />}></Route>
+        <Route path='/invoice/:orderNumber' element={<Invoice />}></Route>
+        
       </Routes>
 
     </Router>

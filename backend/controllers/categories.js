@@ -5,7 +5,6 @@ const createCategory = async (req, res) => {
     const newCategory = new Categories({
       name: req.body.name,
       description: req.body.description,
-      imagePath: req.file.path 
     });
 
     const savedCategory = await newCategory.save();
@@ -28,9 +27,6 @@ const updateCategory = async (req, res) => {
     }
     if (req.body.description != null) {
       category.description = req.body.description;
-    }
-    if (req.file.path != null) {
-      category.imagePath = req.file.path;
     }
 
     const updatedCategory = await category.save();

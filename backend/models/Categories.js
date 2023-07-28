@@ -11,10 +11,6 @@ const CategoriesSchema = new Schema({
       type: String,
       required: true,
     },
-    imagePath: {
-      type: String,
-      required: true,
-    }
   }, {
     timestamps: true,
 });

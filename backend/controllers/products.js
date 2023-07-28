@@ -2,11 +2,9 @@ const Products = require('../models/Products');
 
 const createProduct = async (req, res) => {
   try {
-
-    if(req.body.productID == null || req.body.category == null || req.body.name == null || req.body.description == null || req.body.dimensions == null || req.file == null) {
+    if(req.body.productID == null || req.body.category == null || req.body.name == null || req.body.description == null || req.body.dimensions == null ) {
        return res.status(404).json({ message: 'Cannot find product' });
     }
-
 
     const newProduct = new Products({
       productID: req.body.productID,
@@ -14,7 +12,6 @@ const createProduct = async (req, res) => {
       name: req.body.name,
       description: req.body.description,
       dimensions: req.body.dimensions,
-      productImage: req.file.path,
     });
 
     const savedProduct = await newProduct.save();
@@ -48,9 +45,6 @@ const updateProduct = async (req, res) => {
     }
     if (req.body.dimensions != null) {
       product.dimensions = req.body.dimensions;
-    }
-    if (req.file.path != null) {
-      product.productImage = req.file.path;
     }
 
     const updatedProduct = await product.save();

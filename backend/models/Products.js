@@ -21,13 +21,9 @@ const ProductsSchema = new Schema({
         required: true,
     },
     dimensions: {
-        typeof: String,
-        required: true,
-    },
-    productImage: {
         type: String,
         required: true,
-    }
+    },
   }, {
     timestamps: true,
 });
