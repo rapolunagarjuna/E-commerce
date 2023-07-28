@@ -32,6 +32,7 @@ function NavItem({name , link}) {
             onMouseLeave={handleMouseLeave}
           >{name}</Link>}
     </div>
+    
   );
 }
 
