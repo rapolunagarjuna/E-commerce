@@ -9,8 +9,8 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 
 import Dashboard from "./pages/Dashboard";
-import Customer from "./pages/Customer";
 import Categories from "./pages/Categories";
+
 import Geosynthetics from "./pages/Geosynthetics";
 import ErosionControl from "./pages/ErosionControl.jsx";
 import AgroTextiles from "./pages/AgroTextiles.jsx";
@@ -19,8 +19,9 @@ import PackagingTextiles from "./pages/PackagingTextiles";
 
 
 
-import GeoSyntheticpg from "./pages/GeoSyntheticpg";
+import GeoSyntheticpg from "./components/ProdGrid";
 import Test from "./components/Test";
+import Template from "./pages/Template";
 
 
 export default function App() {
@@ -38,6 +39,7 @@ export default function App() {
         <Route path='/test' element={<Test />}></Route>
         <Route path='/geosynthetics' element ={<GeoSyntheticpg  />}></Route>
         <Route path='/categories' element={<Categories />}></Route>
+        <Route path='/categories/:category' element ={<Template />}></Route>
         {/* <Route path='/products/geosynthetics' element={<Geosynthetics />}></Route>
         <Route path='/products/erosion-control' element={<ErosionControl />}></Route>
         <Route path='/products/agro-textiles' element={<AgroTextiles />}></Route>

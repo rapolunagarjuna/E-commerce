@@ -104,7 +104,7 @@ function SelectNavItem({value , options}) {
   const name = options.find((option) => option.value === value)?.label;
 
   const handleOnChange = (selectedOption) => {
-    navigate(selectedOption.link);
+    navigate(selectedOption.link, { replace: true });
 };
 
   return(
@@ -126,12 +126,12 @@ const links = [
 
 const categories = [
   {value: "categories" , label: 'Categories', link: '/categories'},
-  {value: "geosynthetics", label: 'Geosynthetics', link: 'categories/geosynthetics'}, 
-  {value: "industrial-textiles", label: 'Industrial Textiles', link: 'categories/industrial-textiles'},
-  {value: "agro-textiles", label: 'Agro Textiles' , link: 'categories/agro-textiles'},
-  {value: "accessories", label: 'Accessories', link: '/accessories'},
-  {value: "packaging-textiles", label: 'Packaging Textiles', link: 'categories/packaging-textiles'},
-  {value: "erosion-control", label: 'Erosion Control', link: 'categories/erosion-control'},
+  {value: "geosynthetics", label: 'Geosynthetics', link: '/categories/geosynthetics'}, 
+  {value: "industrial-textiles", label: 'Industrial Textiles', link: '/categories/industrial-textiles'},
+  {value: "agro-textiles", label: 'Agro Textiles' , link: '/categories/agro-textiles'},
+  {value: "accessories", label: 'Accessories', link: '/categories/accessories'},
+  {value: "packaging-textiles", label: 'Packaging Textiles', link: '/categories/packaging-textiles'},
+  {value: "erosion-control", label: 'Erosion Control', link: '/categories/erosion-control'},
 ]
 
 export default function NavBarMain() {
