@@ -15,7 +15,7 @@ export default function ContactForm() {
   };
 
   return (
-    <form className="flex flex-col w-4/12 min-w-96 gap-2 mt-28 mb-64 text-lg text-primary ">
+    <form className="flex flex-col w-4/12 min-w-96 gap-2 mt-28 mb-64 text-base 2xl:text-lg text-primary ">
       
       <p>First Name*</p>
       <input type="text" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} className="w-full p-3 border border-gray-300  focus:outline-none focus:border-blue-500" required />

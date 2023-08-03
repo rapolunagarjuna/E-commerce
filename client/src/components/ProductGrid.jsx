@@ -48,12 +48,12 @@ function Item({name, description, link ,imgSrc}) {
     const navigate = useNavigate();
 
     return(
-        <div className="relative hover:cursor-pointer flex flex-col justify-center gap-10 text-slate-100" 
-            style={{width:'600px',   height: "350px" , backgroundImage:`url(${imgSrc})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+        <div className="relative w-full h-full  hover:cursor-pointer flex flex-col justify-center  text-slate-100" 
+            style={{ backgroundImage:`url(${imgSrc})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
             onClick={()=>navigate(link, {replace: true})}
             >
             {/* <img src={imgSrc} className="w-full h-full object-cover" alt=" " /> */}
-            <p className="z-10 text-center hover:text-secondary transition ease-in-out duration-200 hover:text-4xl text-3xl font-bold pb-2"> {name} </p>
+            <p className="z-10 text-center hover:text-secondary transition ease-in-out duration-200 text-xl hover:text-2xl 2xl:text-3xl 2xl:hover:text-4xl  font-bold pb-2"> {name} </p>
             <div className="absolute inset-0 bg-black opacity-40"></div>
         </div>
     );                                                                                                                                                                                                                                                                                                                                                                           
@@ -62,7 +62,7 @@ function Item({name, description, link ,imgSrc}) {
 
 export default function ProductGrid() {
     return(
-        <div className='grid mt-44 grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-2 gap-x-4 gap-y-16 pb-44 place-items-start'>
+        <div className='w-8/12 h-screen grid grid-cols-2 gap-5 place-items-center'>
             {products.map(product => 
             <Item 
                 key={product.name} 

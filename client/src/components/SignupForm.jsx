@@ -46,18 +46,18 @@ export default function SignupForm() {
 
 
     return(
-        <div className="p-10 w-4/12 min-w-max h-fit text-primary mx-auto">
-            <p className="text-center text-4xl " >Sign up for a new account</p>
+        <div className="p-10 w-5/12  2xl:w-4/12 min-w-max h-fit text-primary mx-auto">
+            <p className="text-center text-2xl 2xl:text-4xl " >Sign up for a new account</p>
                 
-            <p className="text-left text-lg text-red-500 pt-3 pl-10 w-full h-10">{error}</p>
+            <p className="text-left text-sm 2xl:text-lg text-red-500 pt-3 pl-10 w-full h-6  2xl:h-10">{error}</p>
 
-            <form className="pl-10 pr-10 pb-10 gap-10 w-full min-w-max" >
+            <form className="pl-10 pr-10 pb-10 gap-10 w-full min-w-max text-lg 2xl:text-2xl" >
                 
-                <div className="flex flex-col text-left text-2xl  mt-5 mb-5" >
+                <div className="flex flex-col text-left   mt-5 mb-5" >
                     <label  htmlFor="firstName">First Name</label>
                     <input
                     type="text"
-                    className="text-lg min-w-96 mt-3 p-3 border border-primary"
+                    className="min-w-96   mt-1  2xl:mt-3  p-2  2xl:p-3   border border-primary"
                     id="firstName"
                     placeholder="Enter your first name here"
                     value={firstName}
@@ -65,11 +65,11 @@ export default function SignupForm() {
                     />
                 </div>
 
-                <div className="flex flex-col text-left text-2xl  mt-5 mb-5" >
+                <div className="flex flex-col text-left mt-3 mb-3 2xl:mt-5 2xl:mb-5" >
                     <label  htmlFor="lastName">Last Name</label>
                     <input
                     type="text"
-                    className="text-lg min-w-96 mt-3 p-3 border border-primary"
+                    className="min-w-96 mt-1 2xl:mt-3 p-2 2xl:p-3 border border-primary"
                     id="lastName"
                     placeholder="Enter your last name here"
                     value={lastName}
@@ -77,22 +77,22 @@ export default function SignupForm() {
                     />
                 </div>
 
-                <div className="flex flex-col text-left text-2xl  mt-5 mb-5" >
+                <div className="flex flex-col text-left   mt-3 mb-3 2xl:mt-5 2xl:mb-5" >
                     <label  htmlFor="phone-number">Phone Number</label>
                     <PhoneInput
                         defaultCountry="US" // Set the default country for formatting
                         value={phoneNumber}
                         onChange={setPhoneNumber}
                         placeholder="Enter your phone number here"
-                        className="text-lg min-w-96 mt-3 p-3 border border-primary" // Add styles for the phone input
+                        className="mt-1 2xl:mt-3 p-2 2xl:p-3 min-w-96 border border-primary" // Add styles for the phone input
                     />
                 </div>
 
-                <div className="flex flex-col text-left text-2xl  mt-5 mb-5" >
+                <div className="flex flex-col text-left   mt-3 mb-3 2xl:mt-5 2xl:mb-5" >
                     <label  htmlFor="email">E-mail</label>
                     <input
                     type="email"
-                    className="text-lg min-w-96 mt-3 p-3 border border-primary"
+                    className=" min-w-96 mt-1 2xl:mt-3 p-2 2xl:p-3 border border-primary"
                     id="email"
                     placeholder="Enter email here"
                     value={email}
@@ -100,10 +100,10 @@ export default function SignupForm() {
                     />
                 </div>
 
-                <div className="flex flex-col text-left text-2xl  mt-5 mb-5">
+                <div className="flex flex-col text-left   mt-3 mb-3 2xl:mt-5 2xl:mb-5">
                     <label htmlFor="password">Password</label>
                     <input
-                    className="text-lg min-w-96 mt-3 p-3 border border-primary"
+                    className="mt-1 2xl:mt-3 p-2 2xl:p-3 min-w-96 border border-primary"
                     type="password"
                     id="password"
                     placeholder="Enter password here"
