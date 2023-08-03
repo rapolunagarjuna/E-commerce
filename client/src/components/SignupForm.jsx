@@ -46,7 +46,7 @@ export default function SignupForm() {
 
 
     return(
-        <div className="p-10 w-5/12  2xl:w-4/12 min-w-max h-fit text-primary mx-auto">
+        <div className="p-10 w-5/12 2xl:w-4/12 min-w-max h-fit text-primary mx-auto">
             <p className="text-center text-2xl 2xl:text-4xl " >Sign up for a new account</p>
                 
             <p className="text-left text-sm 2xl:text-lg text-red-500 pt-3 pl-10 w-full h-6  2xl:h-10">{error}</p>
