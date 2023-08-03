@@ -48,21 +48,13 @@ function Item({name, description, link ,imgSrc}) {
     const navigate = useNavigate();
 
     return(
-        <div className="flex flex-col justify-center gap-10 text-primary">
-            <div style={{height: "350px" }}>
-                <img src={imgSrc} className="w-full h-full object-cover" alt=" " />
-            </div>
-
-            <div className="h-fit" >
-                <div className="flex flex-col relative " > 
-                    <div className='text-left h-fit'>
-                        <p className="text-3xl xl:text-2xl lg:text-2xl md:text-2xl sm:text-2xl font-bold pb-2"> {name} </p>
-                        <p className="text-xl pb-2"> {description} </p>
-                        <p className='text-lg text-right transition ease-in-out delay-100 hover:translate-y-1 hover:scale-110 duration-200 text-green-600 hover:text-red-500' onClick={()=>navigate(link)}>Discover more</p>
-                    </div>
-                </div>
-            </div>
-
+        <div className="relative hover:cursor-pointer flex flex-col justify-center gap-10 text-slate-100" 
+            style={{width:'600px',   height: "350px" , backgroundImage:`url(${imgSrc})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+            onClick={()=>navigate(link, {replace: true})}
+            >
+            {/* <img src={imgSrc} className="w-full h-full object-cover" alt=" " /> */}
+            <p className="z-10 text-center hover:text-secondary transition ease-in-out duration-200 hover:text-4xl text-3xl font-bold pb-2"> {name} </p>
+            <div className="absolute inset-0 bg-black opacity-40"></div>
         </div>
     );                                                                                                                                                                                                                                                                                                                                                                           
 }
@@ -70,7 +62,7 @@ function Item({name, description, link ,imgSrc}) {
 
 export default function ProductGrid() {
     return(
-        <div className='grid mx-auto 2xl:w-9/12 2xl:grid-cols-3  w-10/12 xl:grid-cols-2 sm:grid-cols-1 gap-x-4 gap-y-16 pb-44 place-items-start'>
+        <div className='grid mt-44 grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-2 gap-x-4 gap-y-16 pb-44 place-items-start'>
             {products.map(product => 
             <Item 
                 key={product.name} 

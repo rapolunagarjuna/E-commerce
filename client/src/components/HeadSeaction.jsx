@@ -10,7 +10,7 @@ export default function HeadSection({heading, imgSrc}) {
         >
             <div className="absolute top-0 left-0 w-full h-full -z-1 bg-slate-900 opacity-40"></div> 
 
-            <p className='text-stone-50 text-7xl font-bold z-10'>{heading}</p>
+            <p className='text-stone-50 text-7xl font-bold z-10' style={{ textShadow: "3px 3px 5px rgba(0, 0, 0, 0.6)" }}>{heading}</p>
         </div>
     );
 }

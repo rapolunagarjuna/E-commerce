@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BlueBtn from './BlueBtn' 
 import axios from "axios";
+import PhoneInput from 'react-phone-number-input/input'
 
 export default function SignupForm() {
     
@@ -11,6 +12,7 @@ export default function SignupForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -76,6 +78,17 @@ export default function SignupForm() {
                 </div>
 
                 <div className="flex flex-col text-left text-2xl  mt-5 mb-5" >
+                    <label  htmlFor="phone-number">Phone Number</label>
+                    <PhoneInput
+                        defaultCountry="US" // Set the default country for formatting
+                        value={phoneNumber}
+                        onChange={setPhoneNumber}
+                        placeholder="Enter your phone number here"
+                        className="text-lg min-w-96 mt-3 p-3 border border-primary" // Add styles for the phone input
+                    />
+                </div>
+
+                <div className="flex flex-col text-left text-2xl  mt-5 mb-5" >
                     <label  htmlFor="email">E-mail</label>
                     <input
                     type="email"
@@ -86,6 +99,7 @@ export default function SignupForm() {
                     onChange={(e) => {setEmail(e.target.value); setError('');}}
                     />
                 </div>
+
                 <div className="flex flex-col text-left text-2xl  mt-5 mb-5">
                     <label htmlFor="password">Password</label>
                     <input

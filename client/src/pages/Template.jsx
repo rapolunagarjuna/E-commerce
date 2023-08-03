@@ -1,7 +1,5 @@
 import { useParams } from "react-router-dom";
 import IndividualCategoryGrid from "../components/ProdGrid";
-import NavBarMain from "../components/NavBarMain";
-import Footer from "../components/Footer";
 
 import bgImg from '../assets/images/geosynthetics.jpg';
 import bgImg2 from '../assets/images/erosioncontrol.jpg';
@@ -9,7 +7,6 @@ import bgImg3 from '../assets/images/industrialtextiles.jpg';
 import bgImg4 from '../assets/images/agrotextiles.jpg';
 import bgImg5 from '../assets/images/packagingtextiles.jpg';
 import bgImg6 from '../assets/images/accessories.jpg';
-
 import image from '../assets/images/geosynthetics/SILT-FENCE.webp'
 import image1 from '../assets/images/geosynthetics/WGEOTEXTILE.webp'
 import image2 from '../assets/images/geosynthetics/PAVING.webp'
@@ -47,71 +44,72 @@ import image33 from '../assets/images/accessories/TPOST.webp'
 import image34 from '../assets/images/accessories/WIRE_ROD.webp'
 import image35 from '../assets/images/accessories/WOODSTAKES.webp'
 
-const GS = {   title: 'Geosynthetics' ,
-        backgroundImage: bgImg,
-        products: [
-            {
-                name: 'Silt Fence', 
-                imgSrc: image,
-                link: '/silt-fence'
-            },
-            {
-                name: 'Woven Geotextile',
-                imgSrc: image1,
-                link: '/woven_geotextile'
-        
-            },
-            {   name: 'Paving / Retention Grid', 
-                imgSrc: image2,
-                link: '/paving_retention'
-        
-            },
-            {   name: 'Wire Backed Slit Fence', 
-                imgSrc: image3,
-                link: '/wire_backed_slit_fence'
-            },
-            {   name: 'Safety Fence', 
-                imgSrc: image4,
-                link: '/safety_fence'
-            },
-            {   name: 'Non-Woven Geotextile', 
-                imgSrc: image5,
-                link: '/non_woven_geotextile'
-            }
-        ]
+const GS = {   
+    title: 'Geosynthetics' ,
+    backgroundImage: bgImg,
+    products: [
+        {
+            name: 'Silt Fence', 
+            imgSrc: image,
+            description: "For applications in construction industries, paved/unpaved roadways, haul roads for logging/landfills, temporary construction entrances, etc. \n NTPEP Certified. \n Customizable color solutions manufactured on circular & sulzer looms. \n No fraying guareented. \n Available in slit tape & mono-filament. \n Width Available in 24”, 36”, 42” & 48 “. \n Customizable length. \n Offers 500 – 1000 hrs of UV enduring performance"
+        },
+        {
+            name: 'Woven Geotextile',
+            imgSrc: image1,
+            description: ""
+    
+        },
+        {   name: 'Paving / Retention Grid', 
+            imgSrc: image2,
+            description: ""
+    
+        },
+        {   name: 'Wire Backed Slit Fence', 
+            imgSrc: image3,
+            description: ""
+        },
+        {   name: 'Safety Fence', 
+            imgSrc: image4,
+            description: ""
+        },
+        {   name: 'Non-Woven Geotextile', 
+            imgSrc: image5,
+            description: ""
+        }
+    ]
 };
 
 const EC = {   
-        title: 'Erosion Control',
-        backgroundImage: bgImg2,
-        products: [
-        {
-            name: 'Sand Bags', 
-            imgSrc: image6,
-            link: '/sand_bags'
-        },
-        {
-            name: 'Dewatering Bags', 
-            imgSrc : image7,
-            link: '/dewatering_bags'
-        },
-        {
-            name: 'Gabions',
-            imgSrc: image8,
-            link: '/gabions'
-        },  
-        {
-            name: 'Coir',
-            imgSrc: image9,
-            link: '/coir'
-        },
-        {
-            name: 'Jute Burlap',
-            imgSrc: image10,
-            link: '/jute_burlap'
-        }
-        
-        ]
+    title: 'Erosion Control',
+    backgroundImage: bgImg2,
+    products: [
+    {
+        name: 'Sand Bags', 
+        imgSrc: image6,
+        link: '/sand_bags'
+    },
+    {
+        name: 'Dewatering Bags', 
+        imgSrc : image7,
+        link: '/dewatering_bags'
+    },
+    {
+        name: 'Gabions',
+        imgSrc: image8,
+        link: '/gabions'
+    },  
+    {
+        name: 'Coir',
+        imgSrc: image9,
+        link: '/coir'
+    },
+    {
+        name: 'Jute Burlap',
+        imgSrc: image10,
+        link: '/jute_burlap'
+    }
+    
+    ]
     };
 
 const IT = { 
@@ -295,9 +293,7 @@ export default function Template() {
 
     return (
         <>  
-            <NavBarMain />
             {renderProducts()}
-            <Footer />
         </>
         
     );

@@ -7,8 +7,6 @@ import Signup from "./pages/Signup";
 import Products from "./pages/Products";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
-import Orders from "./pages/Orders";
-import Cart from "./pages/Cart";
 import Invoice from "./pages/Invoice";
 
 import Categories from "./pages/Categories"
@@ -16,6 +14,11 @@ import Template from "./pages/Template";
 import GeoSyntheticpg from "./components/ProdGrid";
 import Test from "./components/Test";
 
+import Dashboard from "./components/customer/DashboardPage";
+import Orders from "./components/customer/OrdersPage";
+import Cart from "./components/customer/CartPage";
+import CustomerProducts from "./components/customer/ProductsPage";
+import Profile from "./components/customer/ProfilePage";
 
 export default function App() {
   return (
@@ -26,55 +29,22 @@ export default function App() {
         <Route path='/register' element={<Signup />}></Route>
         <Route path='/contact' element={<Contact />}></Route>
         <Route path='/products' element={<Products />}></Route>
+        <Route path='/products/:category' element={<Template />}></Route>
         <Route path='/about' element={<About />}></Route>
         
         <Route path='/test' element={<Test />}></Route>
-        <Route path='/geosynthetics' element ={<GeoSyntheticpg  />}></Route>
+        {/* <Route path='/geosynthetics' element ={<GeoSyntheticpg  />}></Route>
         <Route path='/categories' element={<Categories />}></Route>
         <Route path='/categories/:category' element={<Template />}></Route>
         <Route path='/cart' element={<Cart />}></Route>
-        <Route path='/orders' element={<Orders />}></Route>
-        <Route path='/invoice/:orderNumber' element={<Invoice />}></Route>
-        
-      </Routes>
+        <Route path='/invoice/:orderNumber' element={<Invoice />}></Route> */}
 
-    </Router>
-  )
-}
-
-import React from "react";
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import Home from "./pages/Home";
-import Signin from "./pages/Signin";
-
-import Signup from "./pages/Signup";
-import Products from "./pages/Products";
-import Contact from "./pages/Contact";
-import About from "./pages/About";
-import Categories from "./pages/Categories";
-import Cart from "./pages/Cart";
-import Orders from "./pages/Orders";
-import Invoice from "./pages/Invoice";
-import Test from "./components/Test";
-import Template from "./pages/Template";
-
-
-export default function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path='/' element={<Home />}></Route>
-        <Route path='/signin' element={<Signin />}></Route>
-        <Route path='/register' element={<Signup />}></Route>
-        <Route path='/contact' element={<Contact />}></Route>
-        <Route path='/products' element={<Products />}></Route>
-        <Route path='/about' element={<About />}></Route>
-        
-        <Route path='/test' element={<Test />}></Route>
-        <Route path='/categories' element={<Categories />}></Route>
-        <Route path='/cart' element={<Cart />}></Route>
-        <Route path='/orders' element={<Orders />}></Route>
-        <Route path='/invoice/:orderNumber' element={<Invoice />}></Route>
+        <Route path='/dashboard' element={<Dashboard />}></Route>
+        <Route path='/dashboard/orders' element={<Orders />}></Route>
+        <Route path='/dashboard/cart' element={<Cart />}></Route>
+        <Route path='/dashboard/products' element={<CustomerProducts />}></Route>
+        <Route path='/dashboard/products/:productCode' element={<CustomerProducts />}></Route>
+        <Route path='/dashboard/profile' element={<Profile />}></Route>
         
       </Routes>
 

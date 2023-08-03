@@ -5,6 +5,10 @@ import CustomSelect from "../components/CustomSelect";
 import BlueBtn from "../components/BlueBtn";
 import GreenBtn from "../components/GreenBtn";
 
+
+
+
+
 export default function ProductPage({product , cart}) {
     
     const [activeOption, setActiveOption] = useState(product.dimensions[0]);

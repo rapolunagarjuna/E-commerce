@@ -38,12 +38,14 @@ const links = [
 
 export default function Navbar() {
     return(
-        <div className="flex text-lg text-bold gap-10 justify-center text-primary  h-28 w-full" >
-            <div className="relative flex flex-row min-w-fit w-6/12 justify-between">
-                <div className="w-40 h-32 p-4">
-                  <img src={logo} className="w-full h-full brightness-100" alt="logo" />
+        <div className="flex text-lg text-bold gap-10 justify-center text-primary h-28 w-full" >
+            <div className="flex flex-row min-w-fit w-full relative justify-center">
+                <div className="w-40 h-32 p-4 ml-0">
+                  <img src={logo} className="w-full h-full" alt="logo" />
                 </div>
-                {links.map((item) => <NavItem name={item.name} link={item.link}/>)}
+                <div className="relative flex flex-row min-w-fit w-6/12 justify-between mx-auto">
+                  {links.map((item) => <NavItem name={item.name} link={item.link}/>)}
+                </div>
             </div>
         </div>
     );

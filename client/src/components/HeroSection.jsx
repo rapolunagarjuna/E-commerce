@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; // Import React Icons
 import Navbar from "./NavBar";
+import BlueBtn from "./BlueBtn";
 
 import image1 from "../assets/images/agro-textiles/FROST-PROTECTION.webp";
 import image2 from "../assets/images/industrialtextiles.jpg";
@@ -8,88 +9,102 @@ import image3 from "../assets/images/agro-textiles/WOVEN-GROUND-COVER.webp";
 import image4 from "../assets/images/industrial-textiles/LUMBER-WRAP.webp";
 import image5 from "../assets/images/industrial-textiles/WOVEN-COATED-PE-GEO-MEMBRANE.webp";
 
+const images = [image1, image2, image3, image4, image5];
+const names = ['Frost Protection', 'Agro Textiles', 'Woven Ground Cover', 'Lumber Wrap', 'Woven Coated PE Geo-Membrane'];
 
-
-function Card({name, link}) {
-
-    const navigate = useNavigate();
-  
-    return (
-        <div className="w-full h-fit p-5 text-primary text-xl bg-secondary bg-opacity-60">
-            <p>{name}</p>
-            <p className="text-lg transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 duration-200 mt-5 text-right text-green-700 hover:text-red-700" onClick={()=>{navigate(link, {replace: true})}}>Discover more</p>
-        </div>
-    )
-}
-
-function HeroDiv({ id, name, link, setHoveredDiv, hoveredDiv }) {
-
-    const images = {
-      'div1': image1,
-      'div2': image2,
-      'div3': image3,
-      'div4': image4,
-      'div5': image5,
-    }
-  
-    const backgroundPositionMap = {
-      'div1': '0% 0%',
-      'div2': '20% 0%',
-      'div3': '40% 0%',
-      'div4': '60% 0%',
-      'div5': '80% 0%',
-    }
-
-    const backgroundStyles = {
-        backgroundSize: '600% 100%',
-        backgroundRepeat: 'no-repeat',
-    }
-  
-    return (
-      <div 
-        className="flex flex-col justify-end h-full w-1/5 border p-10" 
-        onMouseEnter={() => setHoveredDiv(id)}
-        onMouseLeave={()=> setHoveredDiv("null")}
-        style={{ 
-          ...backgroundStyles,
-          backgroundImage: `url(${hoveredDiv === id || hoveredDiv === "null" ? images[id] : images[hoveredDiv]})`, 
-          backgroundPosition: backgroundPositionMap[id],
-        }}
-      >   
-        { (hoveredDiv === id || hoveredDiv === "null") ? <Card name={name} link={link} /> : <div></div> }
-      </div>
-    );
-}
+const CarouselIndicator = ({ currentIndex, totalImages, setCurrentIndex }) => {
+  return (
+    <div className="absolute bottom-5 left-0 right-0 flex justify-center items-center z-20">
+      {images.map((_, index) => (
+        <div
+          key={index}
+          className={`w-2 h-2 rounded-full mx-2 ${
+            currentIndex === index ? "bg-white" : "bg-gray-500"
+          }`}
+          onClick={() => setCurrentIndex(index)}
+        ></div>
+      ))}
+    </div>
+  );
+};
 
 export default function HeroSection() {
-    
-    const [hoveredDiv, setHoveredDiv] = useState("null");
-  
-    const divData = [
-      { id: 'div1', name: 'Frost Protection', link: 'products/frost-protection' },
-      { id: 'div2', name: 'Agro Textiles', link: '/agro-textiles' },
-      { id: 'div3', name: 'Woven Ground Cover', link: 'products/woven-ground-cover' },
-      { id: 'div4', name: 'Lumber wrap', link: 'products/lumber-wrap' },
-      { id: 'div5', name: 'Woven Coated PE Geo-Membrane', link: 'products/geo-membrane' },
-    ];
-  
-  
-    return (
-      <div className="flex flex-col w-full h-screen text-xl text-primary">
-        <Navbar />
-        <div className="w-full flex-grow flex flex-row">
-          {divData.map((divItem) => (
-            <HeroDiv 
-              key={divItem.id}
-              id={divItem.id}
-              name={divItem.name}
-              link={divItem.link}
-              setHoveredDiv={setHoveredDiv}
-              hoveredDiv={hoveredDiv}
-            />
-          ))}
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [textVisible, setTextVisible] = useState(true);
+  const [nextImageSrc, setNextImageSrc] = useState(images[1]); // Initialize with the URL of the next image
+  const [showNextImage, setShowNextImage] = useState(false);
+
+  useEffect(() => {
+    const next = (currentIndex + 1) % images.length;
+    setNextImageSrc(images[next]);
+
+    const id = setTimeout(() => {
+      setCurrentIndex(next);
+      setTextVisible(false);
+      setShowNextImage(true); // Show the next image before the transition
+      setTimeout(() => setTextVisible(true), 50); // Delay the text transition by 50ms
+    }, 5000);
+
+    return () => clearTimeout(id);
+  }, [currentIndex]);
+
+  const handleNextImageLoad = () => {
+    setShowNextImage(false); // Hide the next image after it's loaded
+  };
+
+  const prevImage = () => {
+    const prev = (currentIndex - 1 + images.length) % images.length;
+    setCurrentIndex(prev);
+    setTextVisible(false);
+    setTimeout(() => setTextVisible(true), 500); // Delay the text transition by 500ms
+  };
+
+  const nextImage = () => {
+    const next = (currentIndex + 1) % images.length;
+    setCurrentIndex(next);
+    setTextVisible(false);
+    setTimeout(() => setTextVisible(true), 500); // Delay the text transition by 500ms
+  };
+
+  const containerStyle = {
+    height: `calc(75vh - 7rem)`,
+  };
+
+  return (
+    <div className="relative flex flex-col w-full h-fit text-xl text-primary">
+      <Navbar />
+      <div className="relative w-full flex-grow flex justify-center items-center" style={containerStyle}>
+        <img src={images[currentIndex]} alt={names[currentIndex]} className="w-full h-full object-cover" />
+        <img
+          src={nextImageSrc}
+          alt={names[(currentIndex + 1) % images.length]}
+          className="w-full h-full object-cover"
+          style={{ opacity: showNextImage ? 1 : 0, position: "absolute", top: 0, left: 0, transition: "opacity 0.5s" }}
+          onLoad={handleNextImageLoad}
+        />
+        <div className="flex flex-col absolute z-10 justify-center items-center" style={{ opacity: textVisible ? 1 : 0, transition: "opacity 0.5s" }}>
+          <p className="text-white text-6xl drop-shadow-2xl font-bold z-10 mb-10" style={{ textShadow: "3px 3px 5px rgba(0, 0, 0, 0.8)" }}>{names[currentIndex]}</p>
+          <BlueBtn name="Learn More" />
         </div>
+        <div className="absolute text-white hover:text-secondary left-0 z-20 w-fit h-full flex flex-col items-center justify-center hover:cursor-pointer" onClick={prevImage}>
+          <button className="my-auto p-2 rounded-full focus:outline-none">
+            <FaChevronLeft size={32} />
+          </button>
+        </div>
+        <div className="z-20 w-fit text-white hover:text-secondary absolute right-0 h-full flex flex-col items-center hover:cursor-pointer justify-center" onClick={nextImage}>
+          <button className=" my-auto p-2 rounded-full focus:outline-none">
+            <FaChevronRight size={32} />
+          </button>
+        </div>
+        <div>
+          <CarouselIndicator
+            currentIndex={currentIndex}
+            totalImages={images.length}
+            setCurrentIndex={setCurrentIndex}
+          />
+        </div>
+        <div className="absolute inset-0 bg-black opacity-10"></div>
       </div>
-    );
+    </div>
+  );
 }
-  

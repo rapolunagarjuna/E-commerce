@@ -1,32 +1,29 @@
 import { useNavigate } from 'react-router-dom'
-import NavBarMain from './NavBarMain';
+import NavBar from './NavBar';
 import Footer from './Footer'
 
-function Item({name, imgSrc, link}) {
-    const navigate = useNavigate();
+function Item({name, imgSrc, description}) {
 
     return (
-        <div className='flex flex-col w-full h-96 justify-end' onClick={()=>navigate(link)}
-             style={{
-                backgroundImage: `url(${imgSrc})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-            }} >
-            <div className='flex h-16 flex-col justify-center w-full  text-center bg-secondary bg-opacity-50  text-xl text-primary '>
-                <span>{name}</span>
-                
+        <div className='flex flex-row h-96 w-full mt-10 mb-10 justify-center items-center'>
+            <div className='h-full' style={{width:'500px'}}>
+                <img  src={imgSrc} alt='product image' className='w-full h-full object-cover object center'/>
             </div>
+            <div className='h-full min-w-96 w-8/12 pl-10 overflow-y-auto'>
+                <p className='text-primary text-3xl  '>{name}</p>
+                <ul className='w-full h-fit overflow-y-auto'>
+                    {description.split('\n').map((line, index) => (
+                    // Render each line as a separate paragraph
+                        <li className='w-full text-primary text-xl leading-loose' key={index}>{line}</li> 
+                    ))}
+                </ul>
+            </div>
+            
         </div>
+        
     )
 }
 
-function Grid({products}) {
-    return(
-        <div className='grid mx-auto 2xl:w-9/12 2xl:grid-cols-3  w-10/12 xl:grid-cols-2 sm:grid-cols-1 gap-x-4 gap-y-16 pb-44 place-items-start'>
-            {products.map(product => <Item name={product.name} imgSrc={product.imgSrc} link={product.link}    />)}
-        </div>
-    );
-}
 
 
 
@@ -34,17 +31,17 @@ export default function IndividualCategoryGrid({category}) {
 
 
     return(
-        <div className='flex flex-col justify-between'>
-            <NavBarMain />
-            <div className='w-full h-3/6 pt-36 pb-36 flex flex-col justify-center items center relative' style={{backgroundImage: `url(${category.backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className='flex flex-col justify-center items-center'>
+            <NavBar />
+            <div className='w-full flex flex-col justify-center items center relative' style={{height: '700px' ,backgroundImage: `url(${category.backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <p className='text-5xl text-center font-extrabold pt-16 text-stone-50 m-auto relative z-10'>{category.title}</p>
                 <div className="absolute inset-0 bg-black opacity-40"></div>
             </div>
-
-            <div className='my-20'></div>
-
-            <Grid products={category.products}/>
             
+            <div className='flex flex-col mt-44 mb-44 w-8/12 h-fit justify-center items-center'>
+                {category.products.map(product => <Item name={product.name} imgSrc={product.imgSrc} description={product.description}    />)}
+            </div>
+
             <Footer />
         </div>
     );
