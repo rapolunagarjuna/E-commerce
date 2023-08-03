@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import NavBarMain from '../components/NavBarMain';
 import Footer from '../components/Footer';
 
 export default function Invoice() {
@@ -14,7 +13,6 @@ export default function Invoice() {
 
     return (
         <div className="min-h-screen w-full flex flex-col justify-center items-center">
-            <NavBarMain />
             
             <div className="m-auto w-6/12">
                 <p className="mb-10 text-center text-5xl">{"Invoice for #"+orderNumber}</p>

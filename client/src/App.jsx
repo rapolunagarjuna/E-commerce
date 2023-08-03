@@ -1,17 +1,16 @@
 import React from "react";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+
 import Home from "./pages/Home";
 import Signin from "./pages/Signin";
-
 import Signup from "./pages/Signup";
 import Products from "./pages/Products";
+import Template from "./pages/Template";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Invoice from "./pages/Invoice";
 
-import Categories from "./pages/Categories"
-import Template from "./pages/Template";
-import GeoSyntheticpg from "./components/ProdGrid";
+
 import Test from "./components/Test";
 
 import Dashboard from "./components/customer/DashboardPage";
@@ -33,11 +32,7 @@ export default function App() {
         <Route path='/about' element={<About />}></Route>
         
         <Route path='/test' element={<Test />}></Route>
-        {/* <Route path='/geosynthetics' element ={<GeoSyntheticpg  />}></Route>
-        <Route path='/categories' element={<Categories />}></Route>
-        <Route path='/categories/:category' element={<Template />}></Route>
-        <Route path='/cart' element={<Cart />}></Route>
-        <Route path='/invoice/:orderNumber' element={<Invoice />}></Route> */}
+        {/* <Route path='/invoice/:orderNumber' element={<Invoice />}></Route> */}
 
         <Route path='/dashboard' element={<Dashboard />}></Route>
         <Route path='/dashboard/orders' element={<Orders />}></Route>
