@@ -12,5 +12,5 @@ development:
 docker:
     docker-compose up --build
 
-    email: admin@gmail.com
+    email: admin@example.com
     password: admin
