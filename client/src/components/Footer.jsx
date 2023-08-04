@@ -6,7 +6,7 @@ import instagramIcon from '../assets/images/instaimg.png';
 
 export default function Footer() {
   return (
-    <div className='bg-slate-900 text-xs 2xl:text-sm w-full h-fit p-3 2xl:p-10 self-end'>
+    <div className='bg-slate-900 mt-24 text-xs 2xl:text-sm w-full h-fit p-3 2xl:p-10 self-end'>
       <div className='flex flex-row justify-evenly h-full'>
         <div className='w-fit'>
           <h3 className= 'text-white font-bold'>Products</h3>

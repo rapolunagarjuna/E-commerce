@@ -18,7 +18,7 @@ const PersistentDrawerLeft = ({children}) => {
         { name: 'Sign out', icon: <MdExitToApp /> , func: () => {Cookies.remove('token'); navigate('/', {replace: true})} },
     ];
     const backButton = <MdArrowBackIos />;
-    const openButton = <div className='text-4xl hover:cursor-pointer '><FaBars /></div>;
+    const openButton = <div className='text-2xl hover:cursor-pointer '><FaBars /></div>;
     const [active, setActive] = React.useState(true);
 
     function toggleActive() {
@@ -29,7 +29,7 @@ const PersistentDrawerLeft = ({children}) => {
         <div className="flex h-screen overflow-hidden">
             {/* Sidebar */}
             {active ?
-                <div className="w-80 flex flex-col bg-white divide-y divide-gray-200">
+                <div className="w-64 2xl:w-80 flex flex-col bg-white divide-y divide-gray-200">
                     {/* Header */}
                     <div className="h-16 px-4 py-3 flex justify-end  bg-primary">
                         <h2 className="text-2xl font-semibold text-slate-100 hover:text-secondary hover:cursor-pointer" onClick={toggleActive}>{backButton}</h2>
@@ -40,7 +40,7 @@ const PersistentDrawerLeft = ({children}) => {
                         {menuItems.map((item, index) => (
                             <div
                                 key={item.name}
-                                className="group flex mt-4 mb-4 px-10 py-3 items-center text-xl font-medium text-slate-100 hover:text-3xl hover:text-secondary hover:cursor-pointer"
+                                className="group flex mt-2 mb-2 px-6 py-2  2xl:mt-4 2xl:mb-4 2xl:px-10 2xl:py-3     items-center font-medium text-slate-100  text-base hover:text-xl  2xl:text-xl 2xl:hover:text-2xl hover:text-secondary hover:cursor-pointer"
                                 onClick={item.func}
                             >
                                 {item.icon}
@@ -53,9 +53,9 @@ const PersistentDrawerLeft = ({children}) => {
             }
 
             {/* Main content */}
-            <div className="flex flex-col w-full min-h-screen overflow-y-auto">
-                {active ? <div className='w-full h-24'> </div> : <div className='h-24 p-5 bg-neutral-200 text-primary text-xl cursor-pointer' onClick={toggleActive}>{openButton}</div>}
-                <div className="p-6 mb-auto bg-neutral-200">   
+            <div className="flex flex-col w-full min-h-screen overflow-y-auto bg-neutral-200">
+                {active ? <div className='w-full h-16'> </div> : <div className='h-16 p-5 bg-neutral-200 text-primary text-lg cursor-pointer' onClick={toggleActive}>{openButton}</div>}
+                <div className="w-full my-auto bg-neutral-200">   
                     {children}
                 </div>
                 <Footer />

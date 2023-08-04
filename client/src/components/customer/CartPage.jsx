@@ -65,12 +65,12 @@ function IndividualProduct({item, updateItem}) {
     };
 
     return (
-        <div className='flex flex-row  h-fit bg-slate-100 mt-2 mb-2 border-gray-200 border-b-2 items-center text-center text-xl  p-4'>
+        <div className='flex flex-row justify-end h-fit bg-slate-100 mt-2 mb-2 border-gray-200 border-b-2 items-center text-center text-xl  p-4'>
             <div><img className='w-64 h-44 object-cover' src={imgSample} alt='product image' /></div>
-            <div className='w-1/5 h-24 flex flex-row justify-center items-center'>
+            <div className='w-full h-24 flex flex-row justify-center items-center'>
                 <p className='ml-3 text-center'>{item.name}</p>
             </div>
-            <div className='w-64 flex flex-row justify-center'> <AddRemoveButton name={quantity} addFunction={addQuantity} removeFunction={removeQuantity} /> </div>
+            <div className='w-64 flex flex-row justify-center items-center'> <AddRemoveButton name={quantity} addFunction={addQuantity} removeFunction={removeQuantity} /> </div>
             <div className='w-64 flex flex-row justify-center items-center'><AddRemoveButton name={price} addFunction={addPrice} removeFunction={removePrice}  /></div>
             <div className='w-64'>$ {total}</div>
         </div>
@@ -125,13 +125,13 @@ export default function Cart() {
                     
                     <div className='flex flex-row w-full justify-center '>
                         
-                        <div className='flex flex-col w-fit' >
-                            <div className='flex flex-row text-lg text-center h-16 text-primary p-4'>
+                        <div className='flex flex-col w-8/12' >
+                            <div className='flex flex-row justify-end text-lg text-center h-16 text-primary p-4'>
                                 <div className='w-64'></div>
-                                <div className='w-1/5'>Product Name</div>
-                                <div className='w-64'>Quantity</div>
-                                <div className='w-64'>Price</div>
-                                <div className='w-64'>Total</div>
+                                <div className='w-full text-center'>Product Name</div>
+                                <div className='w-64 text-center'><p className='w-full text-center'>Quantity</p></div>
+                                <div className='w-64 text-center'>Price</div>
+                                <div className='w-64 text-center'>Total</div>
                             </div>
                             {cartItems.map((item, index) => 
                                 <IndividualProduct item={item} updateItem={(updatedItem) => updateItem(index, updatedItem)}  />
@@ -139,7 +139,7 @@ export default function Cart() {
                         </div>
 
                         
-                        <div className='shadow-xl bg-slate-50 mt-16 text-xl ml-28 w-fit p-7 h-fit border-2 border-primary '>
+                        <div className='shadow-xl bg-slate-50 mt-16 text-xl ml-16 w-fit p-7 h-fit border-2 border-primary '>
                             <p className='text-center text-2xl underline underline-offset-8 mb-6 text-primary'>Your cart summary</p>
                             <div className='flex flex-row mb-10 '>
                                 <div className='w-fit h-fit text-primary'>
@@ -155,11 +155,6 @@ export default function Cart() {
                                     <p>{" " + totalAfterTaxAndDiscount}</p>
                                 </div>
                             </div>
-
-                            
-
-
-
                             <BlueBtn name='Proceed to checkout' />
                         </div>
 

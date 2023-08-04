@@ -48,7 +48,7 @@ function Item({name, description, link ,imgSrc}) {
     const navigate = useNavigate();
 
     return(
-        <div className="relative w-full h-full  hover:cursor-pointer flex flex-col justify-center  text-slate-100" 
+        <div className="relative w-full h-full hover:cursor-pointer flex flex-col justify-center  text-slate-100" 
             style={{ backgroundImage:`url(${imgSrc})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
             onClick={()=>navigate(link, {replace: true})}
             >
@@ -62,15 +62,15 @@ function Item({name, description, link ,imgSrc}) {
 
 export default function ProductGrid() {
     return(
-        <div className='w-8/12 h-screen grid grid-cols-2 gap-5 place-items-center'>
-            {products.map(product => 
-            <Item 
-                key={product.name} 
-                name={product.name} 
-                description={product.description} 
-                link={product.link}
-                imgSrc={product.imgSrc}
-            />)}
+        <div className='w-10/12 m-auto h-50 laptop:w-8/12 laptop:h-screen grid grid-cols-2 gap-5 place-items-center'>
+        {products.map(product => 
+        <Item 
+            key={product.name} 
+            name={product.name} 
+            description={product.description} 
+            link={product.link}
+            imgSrc={product.imgSrc}
+        />)}
         </div>
     );
 }

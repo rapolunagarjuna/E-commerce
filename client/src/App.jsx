@@ -17,6 +17,7 @@ import Dashboard from "./components/customer/DashboardPage";
 import Orders from "./components/customer/OrdersPage";
 import Cart from "./components/customer/CartPage";
 import CustomerProducts from "./components/customer/ProductsPage";
+import ProductPage from "./components/customer/ProductPage";
 import Profile from "./components/customer/ProfilePage";
 
 export default function App() {
@@ -38,7 +39,7 @@ export default function App() {
         <Route path='/dashboard/orders' element={<Orders />}></Route>
         <Route path='/dashboard/cart' element={<Cart />}></Route>
         <Route path='/dashboard/products' element={<CustomerProducts />}></Route>
-        <Route path='/dashboard/products/:productCode' element={<CustomerProducts />}></Route>
+        <Route path='/dashboard/products/:productCode' element={<ProductPage />}></Route>
         <Route path='/dashboard/profile' element={<Profile />}></Route>
         
       </Routes>

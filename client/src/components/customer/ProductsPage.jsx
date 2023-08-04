@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import PersistentDrawerLeft from './SideBar';
 import CustomSelect from '../CustomSelect';
 
@@ -25,15 +26,19 @@ const options = [
 
 
 function Item({item}) {
+    const navigate = useNavigate();
+
     return (
-        <div className='p-5 mt-5 mb-5 w-full bg-slate-100 h-fit border hover:-translate-y-5 border-primary shadow-2xl hover:bg-secondary hover:cursor-pointer '> 
-            <div className='flex flex-row h-64 text-lg justify-between ' >
-                <div className='w-5/12'>
-                    <p className='text-primary text-3xl w-fit '>{item.title}</p>
+        <div className='p-5 mt-5 mb-5 w-full bg-slate-100 h-fit border hover:-translate-y-5 border-primary shadow-2xl hover:bg-secondary hover:cursor-pointer'
+            onClick={() => navigate("/dashboard/products/" + item.productCode)}
+        > 
+            <div className='flex flex-row h-64  text-base justify-between ' >
+                <div className='w-6/12'>
+                    <p className='text-primary text-2xl  2xl:text-3xl w-fit '>{item.title}</p>
                     <div className='mt-5'>{item.description}</div>
                 </div>
                 
-                <div className='w-5/12 bg-slate-900'><img alt='product image' /></div>
+                <div className='ml-5 w-6/12 bg-slate-900'><img alt='product image' /></div>
             </div>
         </div>
     )
@@ -43,12 +48,12 @@ export default function CustomerProducts() {
     return (
         <PersistentDrawerLeft >
             <div w-full h-full> 
-                <div className="w-8/12 flex flex-col m-auto justify-center items-center">
+                <div className="w-9/12 2xl:w-7/12 flex flex-col m-auto justify-center items-center" style={{maxWidth:'1000px'}}>
                     <p className="mt-16 mb-5 text-center text-primary text-5xl">Products</p>
 
 
                     <div className='flex flex-row w-full h-fit justify-end'>
-                        <div className='w-64'><CustomSelect options={options} value='none' onChange={()=>{}} /></div>
+                        <div className='w-44  2xl:w-64'><CustomSelect options={options} value='none' onChange={()=>{}} /></div>
                     </div>
 
                     {products.map((item, index) => <Item key={index} item={item} />)}

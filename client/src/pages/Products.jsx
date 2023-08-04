@@ -11,7 +11,7 @@ export default function Products() {
         <div className='flex flex-col justify-center items-center'>
             <Navbar />
             
-            <div className='w-full flex flex-col justify-center mb-16 2xl:mb-44 items-center relative' style={{height:'70vh', backgroundImage: `url(${bgImg})` , backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <div className='w-full flex flex-col h-50 laptop:h-70 justify-center mb-16 2xl:mb-44 items-center relative' style={{backgroundImage: `url(${bgImg})` , backgroundSize: 'cover', backgroundPosition: 'center' }}>
                     
                 <p className='text-center  h-fit w-8/12 min-w-96  text-4xl  2xl:text-6xl text-stone-50 z-10' style={{ textShadow: "3px 3px 5px rgba(0, 0, 0, 0.6)" }}>Sustainable, Reliable & High-Quality products</p>                
                 

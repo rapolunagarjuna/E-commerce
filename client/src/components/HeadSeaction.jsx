@@ -5,7 +5,6 @@ export default function HeadSection({heading, imgSrc}) {
             height: '50vh',
             backgroundImage: `url(${imgSrc})`,
             backgroundAttachment: 'fixed',
-
             }}
         >
             <div className="absolute top-0 left-0 w-full h-full -z-1 bg-slate-900 opacity-40"></div> 

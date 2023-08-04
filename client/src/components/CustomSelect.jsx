@@ -23,13 +23,13 @@ import dwnArrow from '../assets/images/down-arrow.png';
 
 function Option({ options, onChange, setActive }) {
     return (
-        <div className="absolute w-full bg-slate-100 flex flex-col text-xl z-20 shadow-2xl border-l border-r border-b border-primary">
+        <div className="absolute w-full bg-slate-100 flex flex-col 2xl:text-xl z-20 shadow-2xl border-l border-r border-b border-primary">
             {options.map((option) => (
                 <div
                     key={option.value}
                     className="p-3 border-t border-primary hover:bg-secondary cursor-pointer"
                     onClick={() => {
-                        onChange(option);
+                        onChange(option.value);
                         setActive(false);
                     }}
                 >
@@ -71,9 +71,9 @@ export default function CustomSelect({ options, value, onChange }) {
 
     return (
         <div ref={node} className="w-full flex flex-col relative">
-            <div className="border bg-slate-100 border-primary mb-3 p-3 justify-end text-primary text-xl w-full h-min flex flex-row">
+            <div className="border bg-slate-100 border-primary mb-3 p-3 justify-end text-primary 2xl:text-xl w-full h-min flex flex-row">
                 <p className="w-full h-fit">{currentLabel}</p>
-                <div className="h-8 hover:cursor-pointer " onClick={toggleDropdown}>
+                <div className="h-6 2xl:h-8 hover:cursor-pointer " onClick={toggleDropdown}>
                     <img  src={active ? upArrow: dwnArrow } className=" h-full object-contain object-center" />
                 </div>
             </div>
