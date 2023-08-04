@@ -2,10 +2,12 @@ const express = require('express');
 const router = express.Router();
 const { getCartByUser, updateCartItem } = require('../controllers/cart');
 const authenticate = require('../utils/authenticate');
+const authenticateFromQuery = require('../utils/authenticateFromQuery');
 
-router.post('/cart', authenticate, getCartByUser);
 
-router.put('/cart', authenticate, updateCartItem);
+router.get('/cart', authenticateFromQuery, getCartByUser);
+
+router.post('/cart', authenticateFromQuery, updateCartItem);
 
 
 

@@ -102,7 +102,6 @@ const getProductByProductCode = async (req, res) => {
     return res.status(404).json({ message: "Cart not found"});
   }
 
-
   const imagePath = path.join(__dirname, "..", product.image);
   const imageBase64 = fs.readFileSync(imagePath, { encoding: 'base64' });
   

@@ -38,7 +38,7 @@ const createUser = async (req, res) => {
     res.cookie('token', token, { httpOnly: true, sameSite: 'none', secure: true });
 
 
-    return res.status(200).json({message: "User created successfully"});
+    return res.status(200).json({message: "User created successfully" , token: token});
     
   } catch (error) {
     console.log(error);
@@ -73,7 +73,7 @@ const loginUser = async (req, res) => {
     const token = createToken(user);
     res.cookie('token', token, { httpOnly: true, sameSite: 'none', secure: true });
 
-    return res.status(200).json({message: "User logged in successfully"});
+    return res.status(200).json({message: "User logged in successfully", token: token});
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: 'internal error' });

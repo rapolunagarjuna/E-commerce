@@ -4,6 +4,7 @@ import PersistentDrawerLeft from './SideBar';
 import CustomSelect from "../CustomSelect";
 import BlueBtn from "../BlueBtn";
 import GreenBtn from "../GreenBtn";
+import Cookies from 'js-cookie';
 
 const product = {
     productCode : '1',
@@ -52,6 +53,7 @@ export default function ProductPage() {
         setPrice(cart.find(item => item.productCode === product.productCode && product.dimensions[0] === item.dimension)?.price || 0);
         setStatus(cart.find(item => item.productCode === product.productCode && product.dimensions[0] === item.dimension)?true: false);
         setCart(cart);
+        console.log(cart);
         const dimensionOptions = product.dimensions.map((dimension) => ({
             value: dimension,
             label: dimension,
@@ -90,10 +92,33 @@ export default function ProductPage() {
     }
 
     const handleAddToCart = () => {
-        console.log({dimension:activeOption ,price: price, quantity: quantity, productCode: product.productCode});
+        const data = {
+            productCode: productCode,
+            dimension: activeOption,
+            price: price,
+            quantity: quantity,
+        }
+        const token = Cookies.get('token');
+        fetch(`http://localhost:3000/api/cart?token=${token}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                  },
+                body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    setCartItems([...cartItems, updatedCart]);
+                })
+                .catch((error) => {
+                    // Handle the error
+                });
+
     }
 
     const handleUpdateCart = () => {
+
+
         console.log({dimension:activeOption ,price: price, quantity: quantity, productCode: product.productCode});
     }
 
@@ -150,7 +175,7 @@ export default function ProductPage() {
 
                         <div className="w-full h-fit flex flex-row justify-end mt-7">
                             {status ? 
-                                <GreenBtn name="Update Cart" func={handleUpdateCart}/> : 
+                                <GreenBtn name="Update Cart" func={handleAddToCart}/> : 
                                 <BlueBtn name="Add to Cart" func={handleAddToCart}/>
                             }
                         </div>

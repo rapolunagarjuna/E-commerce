@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import BlueBtn from './BlueBtn' 
 import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 export default function SigninForm() {
     const navigate = useNavigate();
@@ -19,11 +20,12 @@ export default function SigninForm() {
             body: JSON.stringify({
                 email: email,
                 password: password
-            })}).then(response => {
-                if (response.status === 200) {
-                    setError('');
-                    navigate('/dashboard', {replace: true});
-                }
+            })}).then(response => response.json())
+            .then(data =>{
+                console.log(data);
+                Cookies.set('token', data.token);
+                setError('');
+                navigate('/dashboard', {replace: true});
             }).catch(error => {
                 if (error.response) {
                     setError(error.response.data.error);

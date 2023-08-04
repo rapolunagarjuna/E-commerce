@@ -6,13 +6,11 @@ const CartItemSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Cart',
         required: true,
-        unique: true,
     },
     productId: {
         type: Schema.Types.ObjectId,
         ref: 'Products',
         required: true,
-        unique: true,
     },
     quantity: {
         type: Number,

@@ -2,9 +2,7 @@ import { useState, useEffect } from 'react';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import PersistentDrawerLeft from './SideBar';
 import BlueBtn from '../BlueBtn'
-import imgSample from '../../assets/images/accessories/TPOST.webp';
-import axios from 'axios';
-import Cookie from 'js-cookie';
+import Cookies from 'js-cookie';
 
 function AddRemoveButton({name, addFunction, removeFunction}) {
     return (
@@ -65,7 +63,9 @@ function IndividualProduct({item, updateItem}) {
 
     return (
         <div className='flex flex-row justify-end h-fit bg-slate-100 mt-2 mb-2 border-gray-200 border-b-2 items-center text-center text-xl  p-4'>
-            <div className='w-80 h-40'><img className='w-full h-full object-cover object-center' src={imgSample} alt='product image' /></div>
+            <div className='w-80 h-40'>
+            <img className='w-full h-full object-cover object-center' src={`data:image/jpeg;base64,${item.imgSrc}`} alt={item.name} />
+            </div>
             <div className='w-full h-24 flex flex-row justify-center items-center'>
                 <p className='ml-3 text-center'>{item.name}</p>
             </div>
@@ -89,31 +89,21 @@ export default function Cart() {
     const [discountPercent, setDiscountPercent] = useState(0);
 
     useEffect(() => {
-        fetch('http://localhost:3000/api/cart', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ /* your data here */ }),
-                credentials: 'include', // This is important to include cookies
+        const token = Cookies.get('token');
+        fetch(`http://localhost:3000/api/cart?token=${token}`, {
+                method: 'GET', // This is important to include cookies
                 })
-                .then((response) => {
-                    // Handle the response
-                })
+                .then(response => response.json())
+                .then(data =>
+                    {console.log(data.cart);
+                    setCartItems(data.cart)})
                 .catch((error) => {
                     // Handle the error
                 });
 
-        const cart = [
-            {productCode: '', name: "product 1" , quantity: 10, price: 10, total: 100 }, 
-            {productCode: '', name: "product 2", quantity: 20, price: 30, total: 600 }, 
-            {productCode: '', name: "product 3", quantity: 5, price: 40, total: 200 },
-            {productCode: '', name: "product 4", quantity: 2, price: 50, total: 100 },
-            {productCode: '', name: "product 5", quantity: 25, price: 60, total: 3000 },
-        ]
         setTaxPercent(0.15);
         setDiscountPercent(0.25);
-        setCartItems(cart);
+
     }, []);
 
     // This will calculate the total price whenever cartItems change
@@ -157,7 +147,7 @@ export default function Cart() {
                             <p className='text-center text-2xl underline underline-offset-8 mb-6 text-primary'>Your cart summary</p>
                             <div className='flex flex-row mb-10 '>
                                 <div className='w-fit h-fit text-primary'>
-                                    <p>Total</p>
+                                    <p>Sub total</p>
                                     <p>Discount</p>
                                     <p>Tax</p>
                                     <p>Total</p>
