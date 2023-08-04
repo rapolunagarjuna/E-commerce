@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import PersistentDrawerLeft from './SideBar';
 import CustomSelect from "../CustomSelect";
@@ -25,17 +25,45 @@ const cart = [{
     price: 4555,
     quantity: 45,
     dimension: 'dimension1',
-}]
+}];
 
 
 export default function ProductPage() {
 
     const productCode = useParams().productCode;
+    const [options, setOptions] = useState([]);
+    const [product, setProduct] = useState({});
+    const [cart, setCart] = useState([]);
+    const [activeOption, setActiveOption] = useState('');
+    const [quantity, setQuantity] = useState(0);
+    const [price, setPrice] = useState(0);
+    const [status, setStatus] = useState(false);
 
-    const [activeOption, setActiveOption] = useState(product.dimensions[0]);
-    const [quantity, setQuantity] = useState(cart.find(item => item.productCode === product.productCode && product.dimensions[0] === item.dimension)?.quantity || 0);
-    const [price, setPrice] = useState(cart.find(item => item.productCode === product.productCode && product.dimensions[0] === item.dimension)?.price || 0);
-    const [status, setStatus] = useState(cart.find(item => item.productCode === product.productCode && product.dimensions[0] === item.dimension)? true : false);
+    useEffect(() => {
+    // Fetch product data using the product code from the API
+    fetch(`http://localhost:3000/api/products/${productCode}`)
+      .then((response) => response.json())
+      .then((data) => {
+        const product = data.product;
+        const cart = data.cart;
+        setProduct(product);
+        setActiveOption(product.dimensions[0]);
+        setQuantity(cart.find(item => item.productCode === product.productCode && product.dimensions[0] === item.dimension)?.quantity || 0);
+        setPrice(cart.find(item => item.productCode === product.productCode && product.dimensions[0] === item.dimension)?.price || 0);
+        setStatus(cart.find(item => item.productCode === product.productCode && product.dimensions[0] === item.dimension)?true: false);
+        setCart(cart);
+        const dimensionOptions = product.dimensions.map((dimension) => ({
+            value: dimension,
+            label: dimension,
+          }));
+        setOptions(dimensionOptions);
+        
+    })
+      .catch((error) => {
+        console.error('Error fetching product:', error);
+      });
+  }, [productCode]);
+
 
 
     function getPricePerRoll() {
@@ -75,16 +103,18 @@ export default function ProductPage() {
             
             <div className="mx-auto my-auto laptop:w-8/12 tablet:w-10/12 h-fit p-8 text-primary flex flex-col justify-center">
                 
-                <p className="text-4xl mb-10">{product.title}</p>
+                <p className="text-4xl mb-10">{product.name}</p>
                 <p className="text-xl mb-10">{product.description}</p>
 
-                <div className="flex w-full flex-row text-xl">
-                    <div className="w-6/12 h-full"><img src={product.imgSrc} /></div>
+                <div className="flex w-full h-fit flex-row text-xl">
+                    <div className="w-6/12 h-full">
+                    <img className='w-full h-full object-cover object-center' src={`data:image/jpeg;base64,${product.imgSrc}`} alt={product.name} />
+                    </div>
                     
-                    <div className="flex flex-col w-6/12 h-full pl-10 justify-between space-y-10">    
+                    <div className="flex flex-col w-6/12 h-full pl-10">    
                         <div className="w-full h-fit ">
                             <p>Product Dimensions:</p>
-                            <div className="pl-6 h-6">
+                            <div className="pl-6 h-18">
                                 <CustomSelect
                                     options={options}
                                     value={activeOption}
@@ -93,7 +123,7 @@ export default function ProductPage() {
                             </div>
                         </div>
 
-                        <div className="w-full h-fit">
+                        <div className="w-full h-fit mt-1">
                             <p>Number of rolls:</p>
                             <div className="pl-6 w-full">
                                 <input
@@ -105,7 +135,7 @@ export default function ProductPage() {
                                 </div>
                         </div>
 
-                        <div className="w-full h-fit">
+                        <div className="w-full h-fit mt-3">
                             <p>Price quoted per roll:</p>
                             <div className="flex flex-row h-fit w-full">
                                 <span className="text-center my-auto h-fit justify-center">$</span>
@@ -118,7 +148,7 @@ export default function ProductPage() {
                             </div>
                         </div>
 
-                        <div className="w-full h-fit flex flex-row justify-end">
+                        <div className="w-full h-fit flex flex-row justify-end mt-7">
                             {status ? 
                                 <GreenBtn name="Update Cart" func={handleUpdateCart}/> : 
                                 <BlueBtn name="Add to Cart" func={handleAddToCart}/>

@@ -24,17 +24,17 @@ const products = [
         link: '/products/industrial-textiles',
         imgSrc: image3
     },
-    {   name: 'Agro Textiles', 
-        description: " Our agro textiles cater to the agricultural sector, providing innovative solutions for crop protection, soil stabilization, and irrigation.",
+    {   name: "Agro Textiles", 
+        description: "Our agro textiles cater to the agricultural sector, providing innovative solutions for crop protection, soil stabilization, and irrigation.",
         link: '/products/agro-textiles',
         imgSrc: image4
     },
-    {   name: 'Packaging Textiles', 
+    {   name: "Packaging Textiles", 
         description: " We offer packaging textiles designed to ensure the safe and efficient transport of goods, as well as a range of accessories to complement our product offerings.",
         link: '/products/packaging-textiles',
         imgSrc: image5
     },
-    {   name: 'Accessories', 
+    {   name: "Accessories", 
         description: "Our accessories are designed to enhance the quality of our products and services.",
         link: '/products/accessories',
         imgSrc: image6

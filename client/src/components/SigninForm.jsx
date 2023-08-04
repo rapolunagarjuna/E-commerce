@@ -22,7 +22,7 @@ export default function SigninForm() {
             })}).then(response => {
                 if (response.status === 200) {
                     setError('');
-                    navigate('/categories', {replace: true});
+                    navigate('/dashboard', {replace: true});
                 }
             }).catch(error => {
                 if (error.response) {

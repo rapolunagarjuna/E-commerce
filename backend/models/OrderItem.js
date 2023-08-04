@@ -20,6 +20,10 @@ const OrderItemSchema = new Schema({
         type: Number,
         required: true,
     },
+    dimension: {
+        type: String,
+        required: true,
+    }
   }, {
     timestamps: true,
 });

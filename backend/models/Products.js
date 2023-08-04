@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ProductsSchema = new Schema({
-    productID: {
+    productCode: {
         type: String,
-        required: true,
         unique: true,
+        required: true,
     },
     category: {
         type: Schema.Types.ObjectId,
@@ -21,9 +21,12 @@ const ProductsSchema = new Schema({
         required: true,
     },
     dimensions: {
-        type: String,
+        type: [String],
         required: true,
     },
+    image: {
+        type: String,
+    }
   }, {
     timestamps: true,
 });

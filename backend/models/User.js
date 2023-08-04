@@ -23,8 +23,17 @@ const UserSchema = new Schema({
   },
   role: {
     type: String,
-    enum: ['admin', 'user', 'editor'],
-    default: 'user',
+    enum: ['Admin', 'User', 'Editor'],
+    default: 'User',
+  },
+  discount: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
+  phoneNumber: {
+    type: 'String',
+    required: true,
   },
   deletedAt: {
     type: Date,

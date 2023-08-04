@@ -69,15 +69,24 @@ export default function CustomSelect({ options, value, onChange }) {
         };
     }, []);
 
+    function renderButton() {
+        if (options.length > 1) {
+            return (
+                <div className="h-6 2xl:h-8 hover:cursor-pointer " onClick={toggleDropdown}>
+                    <img  src={active ? upArrow: dwnArrow } className=" h-full object-contain object-center" />
+                </div> 
+            )
+        }
+    }
+
     return (
         <div ref={node} className="w-full flex flex-col relative">
             <div className="border bg-slate-100 border-primary mb-3 p-3 justify-end text-primary 2xl:text-xl w-full h-min flex flex-row">
                 <p className="w-full h-fit">{currentLabel}</p>
-                <div className="h-6 2xl:h-8 hover:cursor-pointer " onClick={toggleDropdown}>
-                    <img  src={active ? upArrow: dwnArrow } className=" h-full object-contain object-center" />
-                </div>
+                {renderButton()}
+                
             </div>
-            {active && <Option options={options} setActive={setActive} onChange={onChange} />}
+            {options.length != 0 && active && <Option options={options} setActive={setActive} onChange={onChange} />}
         </div>
     );
 }

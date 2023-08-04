@@ -12,7 +12,8 @@ const cartRoutes = require('./routes/cartRoutes');
 const ordersRoutes = require('./routes/ordersRoutes');
 
 const app = express();
-app.use(cors())
+
+app.use(cors({credentials:true , origin: 'http://localhost:5173'}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
