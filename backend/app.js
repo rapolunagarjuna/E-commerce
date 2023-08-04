@@ -13,7 +13,7 @@ const ordersRoutes = require('./routes/ordersRoutes');
 
 const app = express();
 
-app.use(cors({credentials:true , origin: 'http://localhost:5173'}));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
 
