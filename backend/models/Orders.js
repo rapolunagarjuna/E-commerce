@@ -16,7 +16,7 @@ const OrdersSchema = new Schema({
         type: String,
         enum: ['Pending', 'In-Progress', 'Accepted' ,'Delivered', 'Cancelled'],
         required: true,
-        default: 'pending',
+        default: 'Pending',
     }
   }, {
     timestamps: true,

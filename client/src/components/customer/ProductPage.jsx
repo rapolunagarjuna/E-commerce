@@ -39,6 +39,7 @@ export default function ProductPage() {
     const [quantity, setQuantity] = useState(0);
     const [price, setPrice] = useState(0);
     const [status, setStatus] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
     // Fetch product data using the product code from the API
@@ -99,6 +100,7 @@ export default function ProductPage() {
             quantity: quantity,
         }
         const token = Cookies.get('token');
+        setLoading(true);
         fetch(`http://localhost:3000/api/cart?token=${token}`, {
                 method: 'POST',
                 headers: {
@@ -106,20 +108,37 @@ export default function ProductPage() {
                   },
                 body: JSON.stringify(data)
                 })
-                .then(response => response.json())
+                .then(response => {
+                    console.log("STATUS CODE: " + response.status);
+                    console.log(response.status ===  200)
+                    if (response.status ===  200) {
+                        return response.json();   
+                    } else {
+                        throw new Error();
+                    }})
                 .then(data => {
-                    setCartItems([...cartItems, updatedCart]);
+                    const updatedCartItem = data.cart;
+                    const existingIndex = cart.findIndex(item => item.productCode === updatedCartItem.productCode && item.dimension === updatedCartItem.dimension);
+
+                    if (existingIndex !== -1) {
+                        // Update existing item's quantity and price
+                        const updatedItems = [...cart];
+                        updatedItems[existingIndex].quantity = updatedCartItem.quantity;
+                        updatedItems[existingIndex].price = updatedCartItem.price;
+                        setCart(updatedItems);
+                    } else {
+                        const updatedItems = [...cart, updatedCartItem];
+                        setCart(updatedItems);
+                    }
+
+                    setActiveOption(updatedCartItem.dimension);
+                    setQuantity(updatedCartItem.quantity);
+                    setPrice(updatedCartItem.price);
+                    setStatus(true);
+                    setLoading(false);
                 })
-                .catch((error) => {
-                    // Handle the error
-                });
+                .catch((error) => alert(error.message));
 
-    }
-
-    const handleUpdateCart = () => {
-
-
-        console.log({dimension:activeOption ,price: price, quantity: quantity, productCode: product.productCode});
     }
 
 
@@ -175,8 +194,8 @@ export default function ProductPage() {
 
                         <div className="w-full h-fit flex flex-row justify-end mt-7">
                             {status ? 
-                                <GreenBtn name="Update Cart" func={handleAddToCart}/> : 
-                                <BlueBtn name="Add to Cart" func={handleAddToCart}/>
+                                <GreenBtn name="Update Cart" func={handleAddToCart} loading={loading}/> : 
+                                <BlueBtn name="Add to Cart" func={handleAddToCart} loading={loading}/>
                             }
                         </div>
 

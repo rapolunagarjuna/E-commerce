@@ -2,6 +2,7 @@ const Orders = require('../models/Orders');
 const OrderItem = require('../models/OrderItem');
 const CartItem = require('../models/CartItem');
 const Cart = require('../models/Cart');
+const {sendEmail} = require('../utils/orderCreationMailGeneration');
 
 const getAllOrders = async (req, res) => {
   try {
@@ -30,12 +31,12 @@ const getSingleOrder = async (req, res) => {
 
 const getOrdersByUser = async (req, res) => {
   try {
-    const orders = await Orders.find({ userId: req.body.user._id });
+    const orders = await Orders.find({ userId: req.user._id });
     if (!orders) {
       return res.status(404).json({ message: 'No orders found for this user' });
     }
 
-    return res.json(orders);
+    return res.json({orders: orders});
   } catch (err) {
     console.log({ message: err.message });
     return res.status(500).json({ message: 'Internal error, please try again' });
@@ -69,23 +70,22 @@ const updateOrderStatus = async (req, res) => {
     }
 };
 
-
 const createOrder = async (req, res) => {
   try {
-    const cart = await Cart.findOne({ userId: req.body.user._id });
+    const cart = await Cart.findOne({ userId: req.user._id });
     if (cart == null) {
       return res.status(404).json({ message: 'Cart not found' });
     }
 
-    const newOrder = new Order({
-      userId: req.body.user._id,
-      description: 'Order created by user ' + req.body.user._id + ' whose email is'+ req.body.user.email,
-      status: 'pending',
+    const newOrder = new Orders({
+      userId: req.user._id,
+      description: 'Order created by user ' + req.user._id + ' whose email is'+ req.user.email,
+      status: 'Pending',
     });
 
     let totalOrderPrice = 0;
 
-    const cartItems = await CartItem.find({ cartId: cart._id });
+    const cartItems = await CartItem.find({ cartId: cart._id});
 
     if(cartItems.length === 0) {
       return res.status(404).json({ message: 'Cart is empty' });
@@ -96,7 +96,8 @@ const createOrder = async (req, res) => {
         orderId: newOrder._id,
         productId: cartItem.productId,
         quantity: cartItem.quantity,
-        price: cartItem.price
+        price: cartItem.price,
+        dimension: cartItem.dimension
       });
       await orderItem.save();
       
@@ -108,13 +109,13 @@ const createOrder = async (req, res) => {
 
     await Cart.findByIdAndRemove(cart._id);
     
+    await sendEmail('Charitapatel.patel@gmail.com', newOrder._id);
     return res.json({ orderNumber: newOrder._id, status: newOrder.status, totalAmount: totalOrderPrice });
   } catch (err) {
     console.log({ message: err.message });
     return res.status(500).json({ message: 'Internal error, please try again' });
   }
 };
-
   
 module.exports = {
   createOrder,

@@ -22,7 +22,7 @@ const corsOptions = {
 
 
 app.use(cors(corsOptions));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '10mb' }));
 app.use(cookieParser());
 
 app.use('/api', userRoutes);

@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react';
 import PersistentDrawerLeft from './SideBar';
+import Cookies from 'js-cookie';
 
 const orders = [
     {orderNumber: 1, datePlaced: '2019-01-01', status: 'Pending', deliveryDate: '2019-01-01', totalPrice: 10000000, address: "sample address 1, MA-50023, USA"},
@@ -9,12 +11,14 @@ const orders = [
 
 function IndividualOrder({item}) {
 
+    const date = new Date(item.createdAt);
+
     return(
         <div className='w-full h-fit text-white bg-primary p-5 rounded-lg shadow-2xl'>
             <div className='text-xl'>
-                <p>#{item.orderNumber}</p>
+                <p>#{item._id}</p>
                 <p>Status: <span className={item.status === "Delivered" ? 'text-green-400' : 'text-red-400'}>{item.status}</span></p> 
-                <p className='text-base'>Ordered on: {item.datePlaced}</p>
+                <p className='text-base'>Ordered on: { date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear() }</p>
                 <p className='text-base'>{item.status === "Delivered"? "Delivered on: ": "Estimated delivery by:"}<span className='pl-2'>{item.deliveryDate}</span></p>
                 <div className='flex flex-row justify-between mt-5 items-center '>
                     <p className='text-slate-100 underline underline-offset-4 text-base hover:cursor-pointer hover:text-secondary'>View order details</p>
@@ -50,6 +54,18 @@ function IndividualOrder({item}) {
 
 
 export default function Orders() {
+
+    const [orders, setOrders] = useState([]);
+
+    useEffect(() => {
+        const token = Cookies.get('token');
+        fetch(`http://localhost:3000/api/orders?token=${token}`)
+        .then((response) => response.json())
+        .then((data) => {
+            setOrders(data.orders);
+    })}, []);
+
+
     return (
         <PersistentDrawerLeft >
             <div className="w-full h-full min-h-screen">

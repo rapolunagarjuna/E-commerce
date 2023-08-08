@@ -129,7 +129,7 @@ const updateCartItem = async (req, res) => {
       }
   
       const updatedCartItem = await cartItem.save();
-      return res.json(updatedCartItem);
+      return res.json({cart: updatedCartItem});
     } catch (err) {
         console.log({ message: err.message });
         return res.status(500).json({ message: 'Internal error, please try again' });
