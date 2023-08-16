@@ -1,13 +1,17 @@
-const express = require('express');
-const router = express.Router();
+import express from 'express';
+import {
+  createProduct,
+  getProductsByCategory,
+  getProductByProductCode,
+} from '../controllers/products.js';
+import authenticate from '../utils/authenticate.js';
+import authorizeAdmin from '../utils/authorizeAdmin.js';
+import {upload} from '../utils/upload.js';
 
-const {createProduct, getProductsByCategory, getProductByProductCode} = require('../controllers/products');
-const authenticate = require('../utils/authenticate');
-const authorizeAdmin = require('../utils/authorizeAdmin');
-const upload = require('../utils/upload'); 
+const router = express.Router();
 
 router.post('/products/category', getProductsByCategory);
 router.get('/products/:productCode', getProductByProductCode);
 router.post('/products', upload.single('image'), authenticate, authorizeAdmin, createProduct);
 
-module.exports = router;
+export default router;

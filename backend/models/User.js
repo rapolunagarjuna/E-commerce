@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const Schema = mongoose.Schema;
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
+
+const { Schema } = mongoose;
 
 const UserSchema = new Schema({
   firstName: {
@@ -31,8 +32,13 @@ const UserSchema = new Schema({
     required: true,
     default: 0,
   },
+  tax: {
+    type: Number,
+    required: true,
+    deafult: 0.3,
+  },
   phoneNumber: {
-    type: 'String',
+    type: String,
     required: true,
   },
   deletedAt: {
@@ -43,16 +49,18 @@ const UserSchema = new Schema({
   timestamps: true,
 });
 
-UserSchema.pre('save', async function(next) {
+UserSchema.pre('save', async function (next) {
   if (this.isModified('password')) {
     this.password = await bcrypt.hash(this.password, 10);
   }
   next();
 });
 
-UserSchema.methods.softdelete = async function() {
+UserSchema.methods.softdelete = async function () {
   this.deletedAt = Date.now();
   await this.save();
 };
 
-module.exports = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema);
+
+export default User;

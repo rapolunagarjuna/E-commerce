@@ -1,7 +1,6 @@
-require('dotenv').config();
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
-function authenticate(req, res, next) {
+export default function authenticate(req, res, next) {
   const token = req.cookies.token;
   if (!token) {
     return res.status(401).json({ message: 'No token provided' });
@@ -16,4 +15,3 @@ function authenticate(req, res, next) {
   }
 }
 
-module.exports = authenticate;

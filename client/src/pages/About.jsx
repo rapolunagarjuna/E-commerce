@@ -9,7 +9,7 @@ export default function About() {
 
 
   return (
-    <div className="flex flex-col justify-center items-center ">
+    <div className="flex flex-col justify-center items-center bg-white">
     <Navbar />
     <HeadSection heading="About Us" imgSrc={aboutImage}/>
 

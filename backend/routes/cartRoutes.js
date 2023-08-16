@@ -1,14 +1,11 @@
-const express = require('express');
+import express from 'express';
+
+import { getCartByUser, updateCartItem } from '../controllers/cart.js';
+import authenticateFromQuery from '../utils/authenticateFromQuery.js';
+
 const router = express.Router();
-const { getCartByUser, updateCartItem } = require('../controllers/cart');
-const authenticate = require('../utils/authenticate');
-const authenticateFromQuery = require('../utils/authenticateFromQuery');
-
-
 router.get('/cart', authenticateFromQuery, getCartByUser);
 
 router.post('/cart', authenticateFromQuery, updateCartItem);
 
-
-
-module.exports = router;
+export default router;

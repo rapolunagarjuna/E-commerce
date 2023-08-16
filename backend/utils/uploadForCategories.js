@@ -28,6 +28,3 @@ const uploadForCategories = multer({
       }
     }
 });
-  
-
-module.exports = uploadForCategories;

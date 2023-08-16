@@ -25,7 +25,7 @@ export default function Orders () {
     }
 
     return (
-        <div className="min-h-screen w-full flex flex-col justify-center items-center">
+        <div className="min-h-screen w-full flex flex-col justify-center items-center bg-white">
             <NavBarMain />
             
             <div className="m-auto w-6/12">

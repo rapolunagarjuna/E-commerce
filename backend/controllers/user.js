@@ -1,8 +1,8 @@
-const createToken = require('../utils/createToken');
-const User = require('../models/User');
-const bcrypt = require('bcryptjs');
+import createToken from '../utils/createToken.js';
+import User from '../models/User.js';
+import bcrypt from 'bcryptjs';
 
-const createUser = async (req, res) => {
+export const createUser = async (req, res) => {
   const { firstName, lastName, email, password, phoneNumber } = req.body;
   console.log(req.body);
   try {
@@ -46,7 +46,7 @@ const createUser = async (req, res) => {
   }
 };
 
-const getUsers = async (req, res) => {
+export const getUsers = async (req, res) => {
   try {
     const users = await User.find({ deletedAt: null }); 
     res.status(200).json(users);
@@ -55,7 +55,7 @@ const getUsers = async (req, res) => {
   }
 };
 
-const loginUser = async (req, res) => {
+export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
@@ -81,9 +81,3 @@ const loginUser = async (req, res) => {
 };
 
 
-
-module.exports = {
-  createUser,
-  loginUser,
-  getUsers,
-};

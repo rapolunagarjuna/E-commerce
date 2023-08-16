@@ -50,7 +50,7 @@ export default function ProductPage({product , cart}) {
     
 
     return(
-        <div className="flex flex-col justify-between w-full h-screen">
+        <div className="flex flex-col justify-between w-full h-screen bg-white">
             <NavBarMain />
 
             <div className=" w-8/12 h-fit m-auto p-8 text-primary">

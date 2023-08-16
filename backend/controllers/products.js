@@ -1,12 +1,16 @@
-const {helperFunctionForGetCart } = require("./cart");
-const Products = require('../models/Products');
-const User = require('../models/User');
-const Categories = require('../models/Categories');
-const fs = require('fs');
-const path = require('path');
+import { helperFunctionForGetCart } from './cart.js';
+import Products from '../models/Products.js';
+import User from '../models/User.js';
+import Categories from '../models/Categories.js';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-const createProduct = async (req, res) => {
+export const createProduct = async (req, res) => {
   
     if (!req.file) {
       return res.status(400).send('No image provided');
@@ -21,13 +25,15 @@ const createProduct = async (req, res) => {
       return res.status(404).json({ message: "Cannot find category"});
     }
 
+    const dimensions = req.body.dimensions.split(',');
+
   try {
     const newProduct = new Products({
       productCode: req.body.productCode,
       category: categoryId._id,
       name: req.body.name,
       description: req.body.description,
-      dimensions: req.body.dimensions,
+      dimensions: dimensions,
       image: req.file.path,
     });
 
@@ -40,10 +46,9 @@ const createProduct = async (req, res) => {
   }
 };
 
-const getProductsByCategory = async (req, res) => {
+export const getProductsByCategory = async (req, res) => {
   try {
     const {category} = req.body;
-    console.log(req.cookies);
     if (category == null) {
       return res.status(403).json({ message: 'category missing'});
     }
@@ -81,7 +86,7 @@ const getProductsByCategory = async (req, res) => {
   }
 }
 
-const getProductByProductCode = async (req, res) => {
+export const getProductByProductCode = async (req, res) => {
   const productCode = req.params.productCode;
   if (productCode === undefined || productCode === null) {
     return res.status(403).json({ message: "Product code is required"});
@@ -121,8 +126,3 @@ const getProductByProductCode = async (req, res) => {
 }
 
 
-module.exports = {
-  createProduct,
-  getProductsByCategory,
-  getProductByProductCode
-};

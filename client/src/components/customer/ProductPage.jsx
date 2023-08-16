@@ -54,7 +54,7 @@ export default function ProductPage() {
         setPrice(cart.find(item => item.productCode === product.productCode && product.dimensions[0] === item.dimension)?.price || 0);
         setStatus(cart.find(item => item.productCode === product.productCode && product.dimensions[0] === item.dimension)?true: false);
         setCart(cart);
-        console.log(cart);
+        console.log(product);
         const dimensionOptions = product.dimensions.map((dimension) => ({
             value: dimension,
             label: dimension,

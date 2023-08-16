@@ -1,6 +1,6 @@
-const Categories = require('../models/Categories');
+import Categories from '../models/Categories.js';
 
-const createCategory = async (req, res) => {
+export const createCategory = async (req, res) => {
   try {
     const newCategory = new Categories({
       name: req.body.name,
@@ -15,7 +15,7 @@ const createCategory = async (req, res) => {
   }
 };
 
-const updateCategory = async (req, res) => {
+export const updateCategory = async (req, res) => {
   try {
     const category = await Categories.findById(req.params.id);
     if (category == null) {
@@ -37,7 +37,3 @@ const updateCategory = async (req, res) => {
   }
 };
 
-module.exports = {
-  createCategory,
-  updateCategory
-};

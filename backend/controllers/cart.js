@@ -1,10 +1,16 @@
-const Cart = require('../models/Cart');
-const CartItem = require('../models/CartItem');
-const Products = require('../models/Products');
-const fs = require('fs');
-const path = require('path');
+import Cart from '../models/Cart.js';
+import CartItem from '../models/CartItem.js';
+import Products from '../models/Products.js';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-const getCartByUser = async (req, res) => {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+
+export const getCartByUser = async (req, res) => {
     try {
       if (req.user === null || req.user === undefined) {
         return res.status(404).json({ message: "Needed to be logged in"});
@@ -45,8 +51,7 @@ const getCartByUser = async (req, res) => {
     }
 };
 
-
-const helperFunctionForGetCart = async (user) => {
+export const helperFunctionForGetCart = async (user) => {
   try {
     let cart = await Cart.findOne({ userId: user._id });
     
@@ -78,7 +83,7 @@ const helperFunctionForGetCart = async (user) => {
   }
 }
 
-const updateCartItem = async (req, res) => {
+export const updateCartItem = async (req, res) => {
     try {
       if (req.body.productCode === null || req.body.productCode === undefined) {
         return res.status(422).json({message: 'ProductCode cannot be empty'});
@@ -135,9 +140,4 @@ const updateCartItem = async (req, res) => {
         return res.status(500).json({ message: 'Internal error, please try again' });
     }
 };
-  
-module.exports = {
-    getCartByUser,
-    updateCartItem,
-    helperFunctionForGetCart
-};
+

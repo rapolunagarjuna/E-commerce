@@ -1,7 +1,7 @@
-require('dotenv').config();
-const jwt = require('jsonwebtoken');
 
-function authenticateFromQuery(req, res, next) {
+import jwt from 'jsonwebtoken';
+
+export default function authenticateFromQuery(req, res, next) {
   const token = req.query.token;
   if (!token) {
     return res.status(401).json({ message: 'No token provided' });
@@ -15,5 +15,3 @@ function authenticateFromQuery(req, res, next) {
     return res.status(401).json({ message: 'Invalid token' });
   }
 }
-
-module.exports = authenticateFromQuery;

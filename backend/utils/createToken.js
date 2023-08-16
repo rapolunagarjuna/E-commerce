@@ -1,16 +1,16 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
-function createToken(user) {
+export default function createToken(user) {
   const payload = {
     _id: user._id,
     firstName: user.firstName,
     lastName: user.lastName,
     email: user.email,
     phoneNumber: user.phoneNumber,
-    role: user.role
+    role: user.role,
+    discount: user.discount,
+    tax: user.tax,
   };
 
   return jwt.sign(payload, process.env.JWT_SECRET); 
 }
-
-module.exports = createToken;

@@ -8,7 +8,7 @@ import ProductGrid from '../components/ProductGrid';
 export default function Products() {
     const navigate = useNavigate();
     return(
-        <div className='flex flex-col justify-center items-center'>
+        <div className='flex flex-col justify-center items-center bg-white'>
             <Navbar />
             
             <div className='w-full flex flex-col h-50 laptop:h-70 justify-center mb-16 2xl:mb-44 items-center relative' style={{backgroundImage: `url(${bgImg})` , backgroundSize: 'cover', backgroundPosition: 'center' }}>

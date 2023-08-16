@@ -7,7 +7,7 @@ import HeadSection from "../components/HeadSeaction";
 
 export default function Contact() {
   return (
-    <div className='flex flex-col w-screen justify-center items-center'>
+    <div className='flex flex-col w-screen justify-center items-center bg-white'>
       <Navbar />
       <HeadSection heading='Contact' imgSrc={contactImage}/>
       <ContactForm />

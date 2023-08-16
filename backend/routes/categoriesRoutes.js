@@ -1,12 +1,9 @@
-const express = require('express');
+import express from 'express';
+
+import { createCategory} from '../controllers/categories.js';
+
 const router = express.Router();
-
-const { createCategory, updateCategory } = require('../controllers/categories');
-const authenticate = require('../utils/authenticate');
-const authorizeAdmin = require('../utils/authorizeAdmin');
-const uploadForCategories = require('../utils/uploadForCategories');
-
 router.post('/categories', createCategory);
 // router.put('/categories/:id', authenticate, authorizeAdmin, updateCategory);
 
-module.exports = router;
+export default router;

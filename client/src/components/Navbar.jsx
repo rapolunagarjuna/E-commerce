@@ -38,7 +38,7 @@ const links = [
 
 export default function Navbar() {
     return(
-        <div className="flex text-lg h-16  2xl:h-24 text-bold gap-10 justify-center text-primary w-full" >
+        <div className="flex text-lg h-16 bg-white  2xl:h-24 text-bold gap-10 justify-center text-primary w-full" >
             <div className="flex flex-row h-full min-w-fit w-full relative justify-center">
                 <div className="w-32 h-full p-4 ml-0">
                   <img src={logo} className="object-center  object-contain w-full h-full" alt="logo" />

@@ -8,7 +8,7 @@ import NewsEventSection from "../components/NewsEventSection";
 export default function Home() {
 
   return (
-    <div>
+    <div className="bg-white">
       <NavBar />
       <HeroSection/>
       <ProductDisplay/>

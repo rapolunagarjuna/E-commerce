@@ -1,18 +1,17 @@
-const express = require('express');
+import express from 'express';
+import {
+  createOrder,
+  getAllOrders,
+  getSingleOrder,
+  getOrdersByUser,
+  updateOrderStatus,
+} from '../controllers/orders.js';
+
+import authenticate from '../utils/authenticate.js';
+import authorizeAdmin from '../utils/authorizeAdmin.js';
+import authenticateFromQuery from '../utils/authenticateFromQuery.js';
+
 const router = express.Router();
-const authenticate = require('../utils/authenticate');
-const authorizeAdmin = require('../utils/authorizeAdmin');
-const authenticateFromQuery = require('../utils/authenticateFromQuery');
-
-const { 
-  createOrder, 
-  getAllOrders, 
-  getSingleOrder, 
-  getOrdersByUser, 
-  updateOrderStatus 
-} = require('../controllers/orders');
-
-
 
 // router.get('/orders', authenticate, authorizeAdmin, getAllOrders);
 router.get('/orders', authenticateFromQuery, getOrdersByUser);
@@ -20,4 +19,4 @@ router.get('/orders', authenticateFromQuery, getOrdersByUser);
 // // router.put('/orders/:id', authenticate, authorizeAdmin, updateOrderStatus);
 router.post('/orders', authenticateFromQuery, createOrder);
 
-module.exports = router;
+export default router;
