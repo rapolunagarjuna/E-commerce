@@ -6,7 +6,7 @@ import Products from "../models/Products.js";
 import generateRandomPassword from "../utils/passwordGenerator.js";
 import sendPassword from "../utils/mails/mailPassword.js";
 import sendApprovalMail from "../utils/mails/orderApproved.js";
-
+import sendUpdationMail from "../utils/mails/updatedOrder.js";
 //getting all products, orders, categories and users
 export async function getAllUsers(req, res) {
   try {
@@ -334,6 +334,7 @@ export async function updateOrder(req, res) {
     if (!order) {
       return res.status(404).json({ message: "Order not found" });
     }
+    const user = await User.findOne({ _id: order.userId });
 
     let subTotal = 0;
 
@@ -359,6 +360,16 @@ export async function updateOrder(req, res) {
 
     const TOTAL =
       (subTotal - (subTotal * order.discount) / 100) * (1 + order.tax / 100);
+
+    await sendUpdationMail(
+      user.email,
+      user.firstName,
+      user.lastName,
+      order,
+      orderItems,
+      subTotal,
+      TOTAL
+    );
 
     return res.status(200).json({ total: TOTAL });
   } catch (err) {

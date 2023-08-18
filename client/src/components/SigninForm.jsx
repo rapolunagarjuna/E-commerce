@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import BlueBtn from './BlueBtn' 
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
+import jwt from 'jwt-decode'
 
 export default function SigninForm() {
     const navigate = useNavigate();
@@ -25,7 +26,15 @@ export default function SigninForm() {
                 console.log(data);
                 Cookies.set('token', data.token);
                 setError('');
-                navigate('/dashboard', {replace: true});
+                const user = jwt(Cookies.get('token'));
+                if (user.role === "Admin") {
+                    navigate('/admin', {replace: true});
+                } else if (user.role === "User") {
+                    navigate('/dashboard', {replace: true});
+                } else {
+                    navigate('/editor', {replace: true});
+                }
+
             }).catch(error => {
                 if (error.response) {
                     setError(error.response.data.error);
