@@ -7,6 +7,8 @@ import generateRandomPassword from "../utils/passwordGenerator.js";
 import sendPassword from "../utils/mails/mailPassword.js";
 import sendApprovalMail from "../utils/mails/orderApproved.js";
 import sendUpdationMail from "../utils/mails/updatedOrder.js";
+
+
 //getting all products, orders, categories and users
 export async function getAllUsers(req, res) {
   try {
@@ -315,6 +317,10 @@ export async function approveOrderById(req, res) {
       SUBTOTAL,
       TOTAL
     );
+
+
+
+
     return res.status(200).json({ message: "order completed successfully" });
   } catch (err) {
     console.log(err);

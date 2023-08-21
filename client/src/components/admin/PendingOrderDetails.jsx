@@ -64,6 +64,7 @@ export default function AdminPendingOrderDetails() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        alert("Order saved successfully");
         setSaveLoading(false);
       })
       .catch((err) => {
@@ -81,7 +82,10 @@ export default function AdminPendingOrderDetails() {
       body: JSON.stringify({ orderItems: items }),
     })
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        alert("Order approved successfully");
+        console.log(data);
+      })
       .catch((err) => console.log(err));
   }
 

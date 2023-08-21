@@ -206,6 +206,7 @@ export default function Cart() {
                         setTax(0);
                         setTotalAfterTaxAndDiscount(0);
                         setLoading(false);
+                        alert("Order succesfully placed");
                         console.log(data);})
                 .catch((error) => {
                     setLoading(false);

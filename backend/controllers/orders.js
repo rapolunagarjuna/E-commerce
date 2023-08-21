@@ -3,6 +3,8 @@ import OrderItem from "../models/OrderItem.js";
 import CartItem from "../models/CartItem.js";
 import Cart from "../models/Cart.js";
 import sendEmail from "../utils/mails/orderCreationMailGeneration.js";
+import adminCC from "../utils/mails/adminAprroval.js";
+import User from "../models/User.js";
 
 export const getAllOrders = async (req, res) => {
   try {
@@ -133,6 +135,8 @@ export const createOrder = async (req, res) => {
       (totalOrderPrice - (totalOrderPrice * newOrder.discount) / 100) *
       (1 + newOrder.tax / 100);
 
+    const ADMIN = await User.find({ role: "Admin" });
+
     await sendEmail(
       req.user.email,
       req.user.firstNme,
@@ -142,6 +146,19 @@ export const createOrder = async (req, res) => {
       totalOrderPrice,
       TOTAL
     );
+
+    for (let admin in ADMIN) {
+      await adminCC(
+        admin.email,
+        admin.firstNme,
+        admin.lastName,
+        newOrder,
+        cartItems,
+        totalOrderPrice,
+        TOTAL
+      );
+    }
+
     return res.json({
       orderNumber: newOrder._id,
       status: newOrder.status,
