@@ -23,7 +23,8 @@ export default function SignupForm() {
             firstName: firstName,
             lastName: lastName,
             email: email,
-            password: password
+            password: password,
+            phoneNumber: phoneNumber,
         }, {
             headers: {
                 'Content-Type': 'application/json'
@@ -32,7 +33,7 @@ export default function SignupForm() {
         .then(response => {
             if (response.status === 200 || response.status === 204) {
                 setError('');
-                navigate('/dashboard', {replace: true});
+                navigate('/signin', {replace: true});
             }
         })
         .catch(error => {

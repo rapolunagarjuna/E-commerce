@@ -5,6 +5,8 @@ import Cookies from "js-cookie";
 import BlueBtn from "../BlueBtn";
 import PersistentDrawerLeft from "./SideBar.jsx";
 import { BACKEND_URL } from "../../../config";
+import AddToInventoryForm from "./forms/AddToInventoryForm";
+import ConfirmDeleteForm from "./forms/Confirmation";
 
 const options = [
   { value: "None", label: "None" },
@@ -27,12 +29,9 @@ const truncateText = (text, lines) => {
   return text;
 };
 
-function Item({ item }) {
+function Item({ item, onClick }) {
   return (
-    <div
-      className="p-5 mt-5 mb-5 w-full bg-slate-100 h-fit border border-primary shadow-2xl "
-      onClick={() => navigate("/dashboard/products/" + item.productCode)}
-    >
+    <div className="p-5 mt-5 mb-5 w-full bg-slate-100 h-fit border border-primary shadow-2xl ">
       <div className="flex flex-row  text-base justify-between ">
         <div className="w-6/12">
           <p className="text-primary text-2xl  2xl:text-3xl w-fit ">
@@ -44,18 +43,16 @@ function Item({ item }) {
             <div>{"Dimension:" + item.dimension}</div>
 
             <div className="w-full h-fit flex flex-row justify-end">
-              <BlueBtn name="Add Inventory" />
+              <BlueBtn name="Add Inventory" func={() => onClick(item)} />
             </div>
           </div>
         </div>
 
         <div className="ml-5 w-fit text-lg">
-
           <div className="flex flex-col w-36 h-36 bg-secondary shadow-xl p-2 text-center text-primary rounded-lg">
             <p className="text-lg">Inventory</p>
             <p className="text-4xl mt-4 font-black">{item.quantity}</p>
           </div>
-        
         </div>
       </div>
     </div>
@@ -67,6 +64,10 @@ export default function InventoryPage() {
   const [filteredByCategory, setFilteredByCategory] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [category, setCategory] = useState(options[0].value);
+  const [selectedProductCode, setSelectedProductCode] = useState({});
+  const [visibleAddForm, setVisibleAddForm] = useState(false);
+  const [visibleConfirmForm, setVisibleConfirmForm] = useState(false);
+
   const TOKEN = Cookies.get("token");
 
   const handleOptionChange = (selectedOption) => {
@@ -98,6 +99,42 @@ export default function InventoryPage() {
     }
   }, [category]);
 
+  function handleAddInventory(product) {
+    setSelectedProductCode(product);
+    setVisibleAddForm(true); //
+  }
+
+  function handleClickInForm(quantity) {
+    const updatedProduct = {
+      product: selectedProductCode,
+      quantity: quantity,
+    };
+    setSelectedProductCode(updatedProduct);
+    setVisibleAddForm(false);
+    setVisibleConfirmForm(true);
+  }
+
+  function apiCallToInventory() {
+    fetch(`${BACKEND_URL}/api/inventory?token=${TOKEN}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        productCode: selectedProductCode.product.productCode,
+        dimension: selectedProductCode.product.dimension,
+        quantity: selectedProductCode.quantity,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+      });
+  }
+
   return (
     <PersistentDrawerLeft>
       <div className="w-full h-fit ">
@@ -125,11 +162,32 @@ export default function InventoryPage() {
 
           <div className="flex flex-col w-full h-fit">
             {filteredProducts.map((item, index) => (
-              <Item key={index} item={item} />
+              <Item key={index} item={item} onClick={handleAddInventory} />
             ))}
           </div>
         </div>
       </div>
+      {visibleAddForm && (
+        <AddToInventoryForm
+          product={selectedProductCode}
+          onClose={() => {
+            setSelectedProductCode({});
+            setVisibleAddForm(false);
+          }}
+          onClick={handleClickInForm}
+        />
+      )}
+      {visibleConfirmForm && (
+        <ConfirmDeleteForm
+          visible={visibleConfirmForm}
+          name={`add ${selectedProductCode.quantity} items into ${selectedProductCode.product.productCode}`}
+          onClose={() => {
+            setSelectedProductCode({});
+            setVisibleConfirmForm(false);
+          }}
+          onConfirm={apiCallToInventory}
+        />
+      )}
     </PersistentDrawerLeft>
   );
 }

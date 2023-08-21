@@ -29,6 +29,7 @@ import AdminPendingOrderDetails from "./components/admin/PendingOrderDetails";
 import AdminOrderDetails from "./components/admin/OrderDetails";
 
 import InventoryPage from './components/editor/InventoryPage';
+import EditorDashboard from './components/editor/DashboardPage';
 
 export default function App() {
   return (
@@ -73,8 +74,8 @@ export default function App() {
         <Route path="/admin/users" element={<AdminUsers />}></Route>
         <Route path="/admin/products" element={<AdminProducts />}></Route>
 
-
-        <Route path="/editor" element={<InventoryPage />}></Route>
+        <Route path='/editor' element={<EditorDashboard />}></Route>
+        <Route path="/inventory" element={<InventoryPage />}></Route>
       </Routes>
     </Router>
   );

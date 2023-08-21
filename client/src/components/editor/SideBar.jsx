@@ -10,11 +10,8 @@ const PersistentDrawerLeft = ({children}) => {
     const navigate = useNavigate();
 
     const menuItems = [
-        { name: 'Dashboard', icon: <MdDashboard /> , func: () => {navigate('/dashboard', {replace:true})} },
-        { name: 'Orders', icon: <IoIosListBox /> , func: () => {navigate('/dashboard/orders', {replace:true})} },
-        { name: 'Cart', icon: <MdShoppingCart /> , func: () => {navigate('/dashboard/cart', {replace: true})} },
-        { name: 'Profile', icon: <MdPerson /> , func: () => {navigate('/dashboard/profile', {replace: true})} },
-        {name: 'Products', icon: <FaBoxes /> , func: () => {navigate('/dashboard/products', {replace: true})} },
+        { name: 'Dashboard', icon: <MdDashboard /> , func: () => {navigate('/editor', {replace:true})} },
+        { name: 'Inventory', icon: <IoIosListBox /> , func: () => {navigate('/inventory', {replace:true})} },
         { name: 'Sign out', icon: <MdExitToApp /> , func: () => {Cookies.remove('token'); navigate('/', {replace: true})} },
     ];
     const backButton = <MdArrowBackIos />;
