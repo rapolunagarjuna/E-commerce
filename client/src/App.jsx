@@ -27,6 +27,7 @@ import AdminCategories from "./components/admin/Categories";
 import AdminOrders from "./components/admin/Order";
 import AdminPendingOrderDetails from "./components/admin/PendingOrderDetails";
 import AdminOrderDetails from "./components/admin/OrderDetails";
+import AdminEmployees from "./components/admin/Employees";
 
 import InventoryPage from './components/editor/InventoryPage';
 import EditorDashboard from './components/editor/DashboardPage';
@@ -73,6 +74,7 @@ export default function App() {
         ></Route>
         <Route path="/admin/users" element={<AdminUsers />}></Route>
         <Route path="/admin/products" element={<AdminProducts />}></Route>
+        <Route path="/admin/employees" element={<AdminEmployees />}></Route>
 
         <Route path='/editor' element={<EditorDashboard />}></Route>
         <Route path="/inventory" element={<InventoryPage />}></Route>

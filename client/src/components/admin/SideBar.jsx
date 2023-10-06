@@ -15,6 +15,7 @@ const PersistentDrawerLeft = ({children}) => {
         { name: 'Orders', icon: <IoIosListBox /> , func: () => {navigate('/admin/orders', {replace:true})} },
         {name: 'Products', icon: <FaBoxes /> , func: () => {navigate('/admin/products', {replace: true})} },
         {name: 'Categories', icon: <FaBoxes /> , func: () => {navigate('/admin/categories', {replace: true})} },
+        {name: 'Employees', icon: <MdPerson /> , func: () => {navigate('/admin/employees', {replace: true})} },
         { name: 'Users', icon: <MdPerson /> , func: () => {navigate('/admin/users', {replace: true})} },
         { name: 'Sign out', icon: <MdExitToApp /> , func: () => {Cookies.remove('token'); navigate('/', {replace: true})} },
     ];

@@ -13,6 +13,7 @@ const headers = [
   "Product Name",
   "Category",
   "Dimensions",
+  "Price",
   "Actions",
 ];
 
@@ -62,6 +63,7 @@ export default function AdminProducts() {
       if (item.productCode === prod.productCode) {
         item.dimensions = prod.dimensions;
         item.name = prod.name;
+        item.price = prod.price;
         item.description = prod.description;
       }
       return item;
@@ -135,6 +137,9 @@ export default function AdminProducts() {
                   </td>
                   <td className="border-2 border-primary p-2 text-lg text-center">
                     {displayArray(item.dimensions)}
+                  </td>
+                  <td className="border-2 border-primary p-2 text-lg text-center">
+                    {item.price}
                   </td>
                   <td className="border-2 border-primary p-2 text-lg  w-32 h-full">
                     <div className="flex flex-row m-auto w-fit h-fit">

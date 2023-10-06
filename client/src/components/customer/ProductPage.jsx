@@ -32,6 +32,7 @@ const cart = [{
 export default function ProductPage() {
 
     const productCode = useParams().productCode;
+    const [isPrice, setIsPrice] = useState(false);
     const [options, setOptions] = useState([]);
     const [product, setProduct] = useState({});
     const [cart, setCart] = useState([]);
@@ -68,6 +69,10 @@ export default function ProductPage() {
   }, [productCode]);
 
 
+    function handleQuotePrice(e) {
+        e.preventDefault();
+        setIsPrice(true);
+    }
 
     function getPricePerRoll() {
         return cart.find(item => item.productCode === product.productCode && item.dimension === activeOption)?.price || 0;
@@ -93,15 +98,17 @@ export default function ProductPage() {
     }
 
     const handleAddToCart = () => {
+
         const data = {
             productCode: productCode,
             dimension: activeOption,
             price: price,
             quantity: quantity,
         }
+        console.log(data);
         const token = Cookies.get('token');
         setLoading(true);
-        fetch(`http://localhost:3000/api/cart?token=${token}`, {
+        fetch(`http://localhost:3000/api/cart?token=${token}&SP=${!isPrice}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -109,12 +116,12 @@ export default function ProductPage() {
                 body: JSON.stringify(data)
                 })
                 .then(response => {
-                    console.log("STATUS CODE: " + response.status);
-                    console.log(response.status ===  200)
                     if (response.status ===  200) {
                         return response.json();   
                     } else {
-                        throw new Error();
+                        return response.json().then(errorData => {
+                            throw new Error(errorData.message);
+                        });
                     }})
                 .then(data => {
                     const updatedCartItem = data.cart;
@@ -137,10 +144,9 @@ export default function ProductPage() {
                     setStatus(true);
                     setLoading(false);
                 })
-                .catch((error) => alert(error.message));
+                .catch((error) => alert(error));
 
     }
-
 
     return (
         <PersistentDrawerLeft >
@@ -155,7 +161,16 @@ export default function ProductPage() {
                     <img className='w-full h-full object-cover object-center' src={`data:image/jpeg;base64,${product.imgSrc}`} alt={product.name} />
                     </div>
                     
-                    <div className="flex flex-col w-6/12 h-full pl-10">    
+                    <div className="flex flex-col w-6/12 h-full pl-10">
+                        <div className="w-full h-fit ">
+                            <p>Standard price per roll:</p>
+                            <div className="flex flex-row h-fit w-full">
+                                <span className="text-center my-auto h-fit justify-center">$</span>
+                                <span className="w-full ml-3 p-3 h-fit">{product.price}</span>
+                            </div>
+                        </div>
+
+
                         <div className="w-full h-fit ">
                             <p>Product Dimensions:</p>
                             <div className="pl-6 h-18">
@@ -179,7 +194,15 @@ export default function ProductPage() {
                                 </div>
                         </div>
 
+                        <div className="w-full h-fit mt-1">
+                            {isPrice || status? null:
+                                <p className='text-right underline text-sm hover:cursor-pointer' onClick={handleQuotePrice}>want to quote a price?</p>
+                            }
+                        </div>
+
                         <div className="w-full h-fit mt-3">
+                            {isPrice || status?
+                            <div>
                             <p>Price quoted per roll:</p>
                             <div className="flex flex-row h-fit w-full">
                                 <span className="text-center my-auto h-fit justify-center">$</span>
@@ -190,17 +213,19 @@ export default function ProductPage() {
                                     value={price}
                                     onChange={handlePriceChange}/>
                             </div>
-                        </div>
-
-                        <div className="w-full h-fit flex flex-row justify-end mt-7">
-                            {status ? 
-                                <GreenBtn name="Update Cart" func={handleAddToCart} loading={loading}/> : 
-                                <BlueBtn name="Add to Cart" func={handleAddToCart} loading={loading}/>
-                            }
-                        </div>
+                            </div>
+                        
+                            :null}
+                        </div>                
 
                     </div>
-                
+                </div>
+
+                <div className="w-full h-fit flex flex-row justify-end mt-7">
+                    {status ? 
+                        <GreenBtn name="Update Cart" func={handleAddToCart} loading={loading}/> : 
+                        <BlueBtn name="Add to Cart" func={handleAddToCart} loading={loading}/>
+                    }
                 </div>
             </div>
 

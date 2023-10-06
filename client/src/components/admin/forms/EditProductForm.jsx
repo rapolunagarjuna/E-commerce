@@ -7,6 +7,7 @@ import { IoMdClose } from "react-icons/io";
 export default function EditProductForm({ onClose, product, onChange}) {
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState(product.name);
+  const [price, setPrice] = useState(product.price);
   const [description, setDescription] = useState(product.description);
   const [dimensionValues, setDimensionValues] = useState(product.dimensions);
   const [noOfDimensions, setNoOfDimensions] = useState(
@@ -30,6 +31,7 @@ export default function EditProductForm({ onClose, product, onChange}) {
         name: name,
         description: description,
         productCode: product.productCode,
+        price: price,
         dimensions: dimensionValues,
       }),
     }).then(response => response.json())
@@ -67,14 +69,24 @@ export default function EditProductForm({ onClose, product, onChange}) {
             onChange={(e) => setName(e.target.value)}
           />
 
-          <p className="my-2">Description</p>
+          <p className="my-2">Standard price per roll</p>
           <input
             className="p-2 border border-primary my-2 w-full"
-            type="text"
-            placeholder="Enter description here"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            type="number"
+            placeholder="Enter standard price per roll here"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
           />
+
+          <p className="my-2">Description</p>
+            <textarea
+              className="p-2 border border-primary my-2 w-full"
+              type="text"
+              rows='4'
+              placeholder="Enter description here"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            /> 
 
           <p className="my-2">Dimensions</p>
           <input

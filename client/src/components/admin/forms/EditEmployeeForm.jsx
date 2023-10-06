@@ -4,10 +4,8 @@ import { IoMdClose } from "react-icons/io";
 import { BACKEND_URL } from "../../../../config";
 import Cookies from "js-cookie";
 
-export default function EditUserForm({ visible, onClose, onChange, user}) {
+export default function EditEmployeeForm({ visible, onClose, onChange, user}) {
   const [loading, setLoading] = useState(false);
-  const [role, setRole] = useState(user.role);
-  const [discount, setDiscount] = useState(user.discount);
   const TOKEN = Cookies.get("token");
 
   if (!visible) {
@@ -16,7 +14,7 @@ export default function EditUserForm({ visible, onClose, onChange, user}) {
 
   const handleClick = async () => {
     setLoading(true);
-    fetch(BACKEND_URL + "/api/admin/users?token=" + TOKEN,{
+    fetch(BACKEND_URL + "/api/admin/employees?token=" + TOKEN,{
         method: "PUT",
         headers: {
             "Content-Type": "application/json", // Set the content type to JSON
@@ -43,7 +41,7 @@ export default function EditUserForm({ visible, onClose, onChange, user}) {
         {/* Your form content */}
         <div className="flex flex-row justify-end">
           <h2 className="text-2xl text-primary text-center font-semibold mb-4 w-full">
-            Edit User
+            Edit Employee
           </h2>
           <IoMdClose
             size={30}
@@ -57,14 +55,6 @@ export default function EditUserForm({ visible, onClose, onChange, user}) {
           <p className="my-2">{"Phone:" + user.phoneNumber}</p>
           <p className="my-2">{"Email:" + user.email}</p>
 
-          <p className="my-2">Discount (%)</p>
-          <input
-            className="p-2 border border-primary my-2 w-full"
-            type="number"
-            placeholder="Enter discount here"
-            value={discount}
-            onChange={(e) => setDiscount(e.target.value)}
-          />
         </div>
         <div className="flex flex-row justify-end w-full">
           <GreenBtn name="Save" loading={loading} func={handleClick} />

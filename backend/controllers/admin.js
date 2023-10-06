@@ -13,7 +13,22 @@ import sendUpdationMail from "../utils/mails/updatedOrder.js";
 export async function getAllUsers(req, res) {
   try {
     const users = await User.find(
-      {},
+      {role: "User"},
+      "firstName lastName email role discount phoneNumber"
+    );
+    return res.json({ users: users });
+  } catch (err) {
+    console.error(err);
+    return res
+      .status(500)
+      .json({ message: "Internal Server Error, try again" });
+  }
+}
+
+export async function getAllEmployees(req, res) {
+  try {
+    const users = await User.find(
+      {role: "Editor"},
       "firstName lastName email role discount phoneNumber"
     );
     return res.json({ users: users });
@@ -58,7 +73,7 @@ export async function getAllProducts(req, res) {
   try {
     const products = await Products.find(
       {},
-      "productCode name description dimensions category"
+      "productCode name description dimensions category price"
     ).populate("category");
     return res.json({ products: products });
   } catch (err) {
@@ -110,6 +125,7 @@ export async function getPendingOrderById(req, res) {
         subTotal += quantity * price;
         return {
           name: productId.name,
+          standardPrice: productId.price,
           price,
           quantity,
           productCode: productId.productCode,
@@ -228,7 +244,7 @@ export async function createCategory(req, res) {
 }
 
 export async function createUser(req, res) {
-  const { firstName, lastName, email, role, phoneNumber, discount } = req.body;
+  const { firstName, lastName, email, phoneNumber, discount } = req.body;
 
   try {
     const password = generateRandomPassword(10);
@@ -241,9 +257,50 @@ export async function createUser(req, res) {
       firstName: firstName,
       lastName: lastName,
       email: email,
-      role: role,
+      role: "User",
       phoneNumber: phoneNumber,
       discount: discount,
+      tax: 40,
+      password: password,
+    });
+
+    await sendPassword(email, user.firstName, user.lastName, password);
+    return res.status(200).json({
+      user: {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        role: user.role,
+        phoneNumber: user.phoneNumber,
+        discount: user.discount,
+        tax: user.tax,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(500)
+      .json({ message: "Internal error, please try again" });
+  }
+}
+
+export async function createEmployee(req, res) {
+  const { firstName, lastName, email, phoneNumber} = req.body;
+
+  try {
+    const password = generateRandomPassword(10);
+    const userExists = await User.findOne({ email: email });
+    if (userExists !== null) {
+      return res.status(409).json({ message: "Email address already taken" });
+    }
+
+    const user = await User.create({
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      role: "Editor",
+      phoneNumber: phoneNumber,
+      discount: 0,
       tax: 40,
       password: password,
     });
@@ -424,7 +481,7 @@ export async function updateCategory(req, res) {
 }
 
 export async function updateUser(req, res) {
-  const { email, role, discount } = req.body;
+  const { email, discount } = req.body;
 
   try {
     const user = await User.findOne({ email: email });
@@ -432,7 +489,6 @@ export async function updateUser(req, res) {
       return res.status(404).json({ message: "User doesnt exist" });
     }
 
-    user.role = role;
     user.discount = discount;
     await user.save();
     return res.status(200).json({ user: user });
@@ -444,8 +500,29 @@ export async function updateUser(req, res) {
   }
 }
 
+export async function updateEmployee(req, res) {
+  const { email} = req.body;
+
+  try {
+    const user = await User.findOne({ email: email });
+    if (user === null) {
+      return res.status(404).json({ message: "User doesnt exist" });
+    }
+
+    user.discount = 0;
+
+    await user.save();
+    return res.status(200).json({ user: user });
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(500)
+      .json({ message: "Internal error, please try again" });
+  }
+}
+
 export async function updateProduct(req, res) {
-  const { productCode, name, description, dimensions } = req.body;
+  const { productCode, name, description, dimensions, price } = req.body;
   try {
     const product = await Products.findOne({ productCode: productCode });
     if (product === null) {
@@ -454,6 +531,7 @@ export async function updateProduct(req, res) {
     product.description = description;
     product.name = name;
     product.dimensions = dimensions;
+    product.price = price;
     await product.save();
     return res.status(200).json({ product: product });
   } catch (err) {

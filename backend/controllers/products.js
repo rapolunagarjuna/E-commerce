@@ -16,7 +16,7 @@ export const createProduct = async (req, res) => {
       return res.status(400).send('No image provided');
     }
 
-    if(req.body.productCode == null || req.body.category == null || req.body.name == null || req.body.description == null || req.body.dimensions == null ) {
+    if(req.body.productCode == null || req.body.category == null || req.body.name == null || req.body.description == null || req.body.dimensions == null || req.body.price == null) {
        return res.status(404).json({ message: 'Missing fields'});
     }
 
@@ -34,6 +34,7 @@ export const createProduct = async (req, res) => {
       name: req.body.name,
       description: req.body.description,
       dimensions: dimensions,
+      price: req.body.price,
       image: req.file.path,
     });
 
@@ -117,6 +118,7 @@ export const getProductByProductCode = async (req, res) => {
       description: product.description,
       category: product.category.name,
       dimensions: product.dimensions,
+      price: product.price || 0,
         // Add any other fields you want to include here
       imgSrc: imageBase64,
     },

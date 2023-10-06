@@ -4,13 +4,12 @@ import { IoMdClose } from "react-icons/io";
 import { BACKEND_URL } from "../../../../config";
 import Cookies from "js-cookie";
 
-export default function AddUserForm({ visible, onClose, onChange }) {
+export default function AddEmployeeForm({ visible, onClose, onChange }) {
   const [loading, setLoading] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [discount, setDiscount] = useState("");
   const TOKEN = Cookies.get("token");
 
   if (!visible) {
@@ -19,7 +18,7 @@ export default function AddUserForm({ visible, onClose, onChange }) {
 
   const handleClick = async () => {
     setLoading(true);
-    fetch(BACKEND_URL + "/api/admin/users?token=" + TOKEN,{
+    fetch(BACKEND_URL + "/api/admin/employees?token=" + TOKEN,{
         method: "POST",
         headers: {
             "Content-Type": "application/json", // Set the content type to JSON
@@ -28,7 +27,6 @@ export default function AddUserForm({ visible, onClose, onChange }) {
             firstName: firstName,
             lastName: lastName,
             email: email,
-            discount: discount,
             phoneNumber: phone,
         })}
     )
@@ -50,7 +48,7 @@ export default function AddUserForm({ visible, onClose, onChange }) {
         {/* Your form content */}
         <div className="flex flex-row justify-end">
           <h2 className="text-2xl text-primary text-center font-semibold mb-4 w-full">
-            Add User
+            Add Employee
           </h2>
           <IoMdClose
             size={30}
@@ -95,14 +93,6 @@ export default function AddUserForm({ visible, onClose, onChange }) {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <p className="my-2">Discount (%)</p>
-          <input
-            className="p-2 border border-primary my-2 w-full"
-            type="number"
-            placeholder="Enter discount here"
-            value={discount}
-            onChange={(e) => setDiscount(e.target.value)}
-          />
         </div>
         <div className="flex flex-row justify-end w-full">
           <GreenBtn name="Save" loading={loading} func={handleClick} />

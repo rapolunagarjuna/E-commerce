@@ -13,7 +13,8 @@ import ConfirmDeleteForm from "./forms/Confirmation.jsx";
 const headers = [
   "Product Name",
   "Quantity",
-  "Roll Price($)",
+  "Standard Roll Price($)",
+  "Quoted Roll Price($)",
   "Inventory",
   "Total($)",
   "Actions",
@@ -195,6 +196,9 @@ export default function AdminPendingOrderDetails() {
                     </td>
                     <td className="border-2 border-primary p-2 text-lg text-center">
                       {item.quantity}
+                    </td>
+                    <td className="border-2 border-primary p-2 text-lg text-center">
+                      {item.standardPrice}
                     </td>
                     <td className="border-2 border-primary p-2 text-lg text-center">
                       {item.price}

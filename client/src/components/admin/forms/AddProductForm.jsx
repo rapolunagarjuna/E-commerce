@@ -10,6 +10,7 @@ export default function AddProductForm({ visible, onClose }) {
     const [productCode, setProductCode] = useState("");
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
+    const [price, setPrice] = useState("");
     const [dimensionValues, setDimensionValues] = useState([]);
     const [category, setCategory] = useState("");
     const [noOfDimensions, setNoOfDimensions] = useState(0);
@@ -27,7 +28,7 @@ export default function AddProductForm({ visible, onClose }) {
         description === "" ||
         dimensionValues === null ||
         category === "" ||
-        image === null
+        image === null || price === ""
       ) {
         alert("Cannot have empty fields");
         setLoading(false);
@@ -37,6 +38,7 @@ export default function AddProductForm({ visible, onClose }) {
       productData.append("name", name);
       productData.append("description", description);
       productData.append("productCode", productCode);
+      productData.append("price", price);
       productData.append("image", image);
       productData.append("category", category);
       productData.append("dimensions", dimensionValues);
@@ -90,11 +92,21 @@ export default function AddProductForm({ visible, onClose }) {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-  
-            <p className="my-2">Description</p>
+
+            <p className="my-2">Standard price per roll</p>
             <input
               className="p-2 border border-primary my-2 w-full"
+              type="number"
+              placeholder="Enter standard price here"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
+  
+            <p className="my-2">Description</p>
+            <textarea
+              className="p-2 border border-primary my-2 w-full"
               type="text"
+              rows='4'
               placeholder="Enter description here"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
