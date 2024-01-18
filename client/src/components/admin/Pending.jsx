@@ -35,7 +35,7 @@ export default function AdminPending() {
   return (
     <PersistentDrawerLeft>
       <div className="flex flex-col w-full">
-        <p className="mb-10 mt-16 text-primary text-center text-5xl">Orders</p>
+        <p className="mb-10 mt-16 text-primary text-center text-5xl">Pending Orders</p>
 
         <table className="mt-10 border-collapse w-8/12 mx-auto">
           <thead>
@@ -77,7 +77,7 @@ export default function AdminPending() {
                       <div className="flex flex-row m-auto w-fit h-fit">
                         <IoMdCreate
                           size={30}
-                          className="hover:cursor-pointer"
+                          className="hover:cursor-pointer hover:text-green-600"
                           onClick={() => handleEditOrder(item._id)}
                         />
                       </div>

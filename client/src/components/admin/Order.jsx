@@ -26,7 +26,7 @@ export default function AdminOrders() {
       <div className="flex flex-col w-full">
         <p className="mb-10 mt-16 text-primary text-center text-5xl">Orders</p>
 
-        <table className="mt-10 border-collapse w-8/12 mx-auto">
+        <table className="mt-10 border-collapse w-10/12 mx-auto">
           <thead>
             <tr>
               {headers.map((item) => (

@@ -31,6 +31,7 @@ import AdminEmployees from "./components/admin/Employees";
 
 import InventoryPage from './components/editor/InventoryPage';
 import EditorDashboard from './components/editor/DashboardPage';
+import AdminPurchaseOrders from "./components/admin/PurchaseOrders";
 
 export default function App() {
   return (
@@ -67,6 +68,7 @@ export default function App() {
           path="/admin/pending/:orderNumber"
           element={<AdminPendingOrderDetails />}
         ></Route>
+        <Route path="/admin/purchaseOrders" element={<AdminPurchaseOrders />}></Route>
         <Route path="/admin/orders" element={<AdminOrders />}></Route>
         <Route
           path="/admin/orders/:orderNumber"

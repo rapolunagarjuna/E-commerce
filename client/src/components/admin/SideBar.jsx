@@ -13,6 +13,7 @@ const PersistentDrawerLeft = ({children}) => {
         { name: 'Dashboard', icon: <MdDashboard /> , func: () => {navigate('/admin', {replace:true})} },
         { name: 'Pending', icon: <MdShoppingCart /> , func: () => {navigate('/admin/pending', {replace: true})} },
         { name: 'Orders', icon: <IoIosListBox /> , func: () => {navigate('/admin/orders', {replace:true})} },
+        { name: 'Purchase Orders', icon: <IoIosListBox /> , func: () => {navigate('/admin/purchaseOrders', {replace:true})} },
         {name: 'Products', icon: <FaBoxes /> , func: () => {navigate('/admin/products', {replace: true})} },
         {name: 'Categories', icon: <FaBoxes /> , func: () => {navigate('/admin/categories', {replace: true})} },
         {name: 'Employees', icon: <MdPerson /> , func: () => {navigate('/admin/employees', {replace: true})} },
@@ -42,7 +43,7 @@ const PersistentDrawerLeft = ({children}) => {
                         {menuItems.map((item, index) => (
                             <div
                                 key={item.name}
-                                className="group flex mt-2 mb-2 px-6 py-2  2xl:mt-4 2xl:mb-4 2xl:px-10 2xl:py-3     items-center font-medium text-slate-100  text-base hover:text-xl  2xl:text-xl 2xl:hover:text-2xl hover:text-secondary hover:cursor-pointer"
+                                className="group flex mt-2 mb-2 px-6 py-2  2xl:mt-4 2xl:mb-4 2xl:px-10 2xl:py-3     items-center font-medium text-slate-100  text-base  2xl:text-xl  hover:text-secondary hover:cursor-pointer"
                                 onClick={item.func}
                             >
                                 {item.icon}

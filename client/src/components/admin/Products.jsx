@@ -145,12 +145,12 @@ export default function AdminProducts() {
                     <div className="flex flex-row m-auto w-fit h-fit">
                       <IoMdCreate
                         size={30}
-                        className="hover:cursor-pointer"
+                        className="hover:cursor-pointer hover:text-green-600"
                         onClick={() => handleEditProduct(item)}
                       />
                       <IoMdTrash
                         size={30}
-                        className="hover:cursor-pointer"
+                        className="hover:cursor-pointer hover:text-red-600"
                         onClick={() => handleDeleteProduct(item)}
                       />
                     </div>
