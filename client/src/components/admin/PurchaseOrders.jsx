@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import BlueBtn from "../BlueBtn.jsx";
 import AddPurchaseOrderForm from "./forms/AddPuchaseOrderForm.jsx";
 
-const headers = ["S.No", "Order Number", "Status", "Delivery Date"];
+const headers = ["S.No", "Purchase Order Number", "Buyer", "Date" , "Total Extended Price"];
 
 export default function AdminPurchaseOrders() {
   const TOKEN = Cookies.get("token");
@@ -16,11 +16,11 @@ export default function AdminPurchaseOrders() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(BACKEND_URL + `/api/admin/orders?token=${TOKEN}`)
+    fetch(BACKEND_URL + `/api/admin/purchaseOrders?token=${TOKEN}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.orders);
-        setOrders(data.orders);
+        console.log(data);
+        setOrders(data);
       });
   }, TOKEN);
 
@@ -49,7 +49,7 @@ export default function AdminPurchaseOrders() {
             </tr>
           </thead>
           <tbody>
-            {orders.length === 0 ? (
+            {orders === null ||  orders.length === 0 ? (
               <tr>
                 <td
                   className="text-primary text-xl pt-10 pb-10 w-full h-fit text-center"
@@ -63,21 +63,27 @@ export default function AdminPurchaseOrders() {
                 return (
                   <tr
                     key={key}
-                    className="hover:bg-secondary hover:cursor-pointer"
-                    onClick={() => navigate(`/admin/orders/${item._id}`)}
+                    // className="hover:bg-secondary hover:cursor-pointer"
+                    // onClick={() => navigate(`/admin/orders/${item._id}`)}
                   >
                     <td className="border-2 border-primary p-2 text-lg text-center">
                       {key + 1}
                     </td>
                     <td className="border-2 border-primary p-2 text-lg text-center">
-                      {item._id}
+                      {item.purchaseOrderNumber}
                     </td>
                     <td className="border-2 border-primary p-2 text-lg text-center">
-                      {item.status}
+                      {item.buyer}
                     </td>
                     <td className="border-2 border-primary p-2 text-lg text-center">
+                      {renderDate(item.date)}
+                    </td>
+                    <td className="border-2 border-primary p-2 text-lg text-center">
+                      {item.totalExtendedPrice}
+                    </td>
+                    {/* <td className="border-2 border-primary p-2 text-lg text-center">
                       {renderDate(item.deliveryDate)}
-                    </td>
+                    </td> */}
                   </tr>
                 );
               })
@@ -88,6 +94,8 @@ export default function AdminPurchaseOrders() {
         <AddPurchaseOrderForm
           visible={isPurchaseOrderFormVisible}
           onClose={() => setPurchaseOrderFormVisible(false)}
+          setOrders={setOrders}
+          purchaseOrders={orders}
         />
 
       </div>

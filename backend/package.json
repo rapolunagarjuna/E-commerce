@@ -12,7 +12,9 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@adobe/pdfservices-node-sdk": "^3.4.2",
         "@google-cloud/local-auth": "^2.1.0",
+        "axios": "^1.6.7",
         "bcryptjs": "^2.4.3",
         "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",
