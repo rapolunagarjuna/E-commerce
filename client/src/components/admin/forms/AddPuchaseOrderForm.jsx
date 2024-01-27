@@ -290,16 +290,33 @@ export default function AddPurchaseOrderForm({ visible, onClose, purchaseOrders,
             console.log("Step 2");
             console.log(data.data);
 
-            setBuyer(data.data.buyer || "");
-            setPurchaseOrderNumber(data.data.purchaseOrderNumber || "");
-            setShipTo(data.data.shipTo || "");
-            setShipVia(data.data.shipVia || "");
-            setTerms(data.data.terms || "");
-            setItems(
-              data.data.items || [
-                { description: "", quantity: 0, unitPrice: 0 },
-              ]
-            );
+            if (data.data.buyer !== undefined || data.data.buyer !== null || data.data.buyer !== "") {
+              setBuyer(data.data.buyer || "");
+            }
+            
+            if (data.data.purchaseOrderNumber !== undefined || data.data.purchaseOrderNumber !== null || data.data.purchaseOrderNumber !== "") {
+              setPurchaseOrderNumber(data.data.purchaseOrderNumber || "");
+            }
+            
+            if(data.data.shipTo !== undefined || data.data.shipTo !== null || data.data.shipTo !== "") {
+              setShipTo(data.data.shipTo || "");
+            }
+
+            if (data.data.shipVia !== undefined || data.data.shipVia !== null || data.data.shipVia !== "") {
+              setShipVia(data.data.shipVia || "");
+            }
+
+            if (data.data.terms !== undefined || data.data.terms !== null || data.data.terms !== "") {
+              setTerms(data.data.terms || "");
+            }
+            
+            if (data.data.items !== undefined || data.data.items !== null ) {
+              setItems(
+                data.data.items || [
+                  { description: "", quantity: 0, unitPrice: 0 },
+                ]
+              );
+            }
             
             if (data.data.date !== undefined || data.data.date !== null || data.data.date !== "") { 
               const extractDate = data.data.date.split("/");
@@ -313,7 +330,9 @@ export default function AddPurchaseOrderForm({ visible, onClose, purchaseOrders,
               setTotalExtendedPrice(data.data.totalExtendedPrice);
             }
             
-            setOrderedFrom(data.data.orderedFrom || "");
+            if (data.data.orderedFrom !== undefined || data.data.orderedFrom !== null ) {
+              setOrderedFrom(data.data.orderedFrom || "");
+            }
 
             setNextLoading(false);
             setCurrentStep(2);
