@@ -338,7 +338,11 @@ export default function AddPurchaseOrderForm({ visible, onClose, purchaseOrders,
             setCurrentStep(2);
           })
           .catch((error) => {
-            alert(error);
+            if(error.status === 403) {
+              alert("GPT token not authorized");
+            } else {
+              alert(error);
+            }
             setNextLoading(false);
             console.error(error);
           });

@@ -2,7 +2,7 @@ import axios from "axios";
 import fs from "fs";
 import convertPdf from "./PDFConvertor.js";
 
-const apiKey = "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";
+const apiKey = process.env.CHATGPT_API_KEY;
 
 function encodeImage(filePath) {
   // Read the file and convert it to base64
@@ -17,8 +17,6 @@ const headers = {
 
 export async function chatgpt(req, res) {
   const fileName = req.file.path;
-  console.log("file name is:");
-  console.log(fileName);
 
   convertPdf(fileName)
     .then((filenames) => {
@@ -79,7 +77,6 @@ export async function chatgpt(req, res) {
           } catch (e) {
             console.error("Error parsing JSON:", e);
           }
-          console.log(jsonObject);
         
           // Now, delete the file
           fs.unlink(filenames, (err) => {
