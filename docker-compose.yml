@@ -8,6 +8,9 @@ services:
       - DB_URI=mongodb+srv://nagarjunarapolu001:Test12345@cluster0.igtxw5r.mongodb.net/
       - JWT_SECRET=TEMP
       - PORT=3000
+      - FRONTEND_URL=http://localhost:5173
+      - ADMIN_MAIL_ID=charitapatel.patel@gmail.com
+      - CHATGPT_API_KEY=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
     depends_on:
       - mongodb
     links:
