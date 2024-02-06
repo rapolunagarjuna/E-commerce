@@ -18,8 +18,7 @@ Features:
  - User Management.
  - Employee Management.
  - Products and Categories Management.
- - Admin Dashboard with various charts for Business Insights
- - 
+ - Admin Dashboard with various charts for business insights.
  - Email Notification for Invoice.
  - Containerized the application in docker.
 
