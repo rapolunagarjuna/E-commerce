@@ -19,14 +19,14 @@ Cloning the repository:
 
     git clone 
 
-Setup .env file: 
- 
-    DATABASE_URL=
-    GOOGLE_CLIENT_ID=
-    GOOGLE_CLIENT_SECRET=
-    GITHUB_ID=
-    GITHUB_SECRET=
-    NEXTAUTH_SECRET=
+Setup .env file in backend folder: 
+
+    DB_URI=
+    JWT_SECRET=
+    PORT=
+    FRONTEND_URL="http://localhost:5173"
+    ADMIN_MAIL_ID=
+    CHATGPT_API_KEY=
 
 Client development:
 
