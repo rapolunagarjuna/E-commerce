@@ -6,6 +6,7 @@ Features:
  - Tailwind animations and effects
  - Full responsiveness
  - Secured User Authentication.
+ - Reset Password using Email
  - Reusable Responsive Components in React.
  - Image upload using Cloudinary CDN
  - Client form validation and handling using react-hook-form
@@ -13,11 +14,18 @@ Features:
  - RESTful principles. 
  - OCR Integration to automate scanned PO's insertion into database.
  - Scalable Architecture for DB Design.
+ - Invoice Generation.
+ - User Management.
+ - Employee Management.
+ - Products and Categories Management.
+ - Admin Dashboard with various charts for Business Insights
+ - 
+ - Email Notification for Invoice.
  - Containerized the application in docker.
 
 Cloning the repository:
 
-    git clone 
+    git clone git@github.com:rapolunagarjuna/E-commerce.git
 
 Setup .env file in backend folder: 
 
