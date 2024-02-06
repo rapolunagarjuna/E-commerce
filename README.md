@@ -8,11 +8,13 @@ Features:
  - Containerized the application.
 
 client development:
+
     cd client
     npm i
     npm run dev
 
 backend development:
+
     cd backend
     npm i
     node app.js
