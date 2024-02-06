@@ -1,5 +1,9 @@
 # E-commerce website
-An E-commerce website to sell various products ranging from Geosynthetics, Industrial Textiles, Agricultural Textiles etc.
+An E-commerce website to sell various products ranging from Geosynthetics, Industrial Textiles, Agricultural Textiles, Soil Erosion etc.
+
+![Screenshot 2024-02-06 at 6 18 40 PM](https://github.com/rapolunagarjuna/E-commerce/assets/112997527/6a9cd63c-cde1-4d4d-9329-2e075cf2f498)
+![Screenshot 2024-02-06 at 6 19 00 PM](https://github.com/rapolunagarjuna/E-commerce/assets/112997527/dd35f8f1-57b0-4cde-acdb-7b6c11023b3a)
+![Screenshot 2024-02-06 at 6 19 17 PM](https://github.com/rapolunagarjuna/E-commerce/assets/112997527/d098fddb-64c7-4649-a4f6-82b23053b636)
 
 Features:
  - Tailwind design
