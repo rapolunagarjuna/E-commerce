@@ -1,15 +1,23 @@
-# demo-for-par-global
-demo version for par-global
+# E-commerce website
+An E-commerce website for par-global.
 
-development:
+Features:
+ - Secured User Authentication.
+ - OCR Integration to automate scanned PO's insertion into database.
+ - 
+ - Containerized the application.
+
+client development:
     cd client
-
-    npm install
-
+    npm i
     npm run dev
 
+backend development:
+    cd backend
+    npm i
+    node app.js
 
-docker:
+docker command:
     docker-compose up --build
 
     email: admin@example.com
