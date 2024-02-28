@@ -3,6 +3,7 @@ import Categories from "../models/Categories.js";
 import Orders from "../models/Orders.js";
 import OrderItem from "../models/OrderItem.js";
 import Products from "../models/Products.js";
+import Mapping from "../models/Mapping.js";
 import generateRandomPassword from "../utils/passwordGenerator.js";
 import sendPassword from "../utils/mails/mailPassword.js";
 import sendApprovalMail from "../utils/mails/orderApproved.js";

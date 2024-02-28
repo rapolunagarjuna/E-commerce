@@ -1,6 +1,7 @@
 import axios from "axios";
 import fs from "fs";
 import convertPdf from "./PDFConvertor.js";
+import Mapping from "../models/Mapping.js";
 
 const apiKey = process.env.CHATGPT_API_KEY;
 
@@ -40,12 +41,13 @@ export async function chatgpt(req, res) {
                 date: Date,
                 terms: String,
                 items: [{
+                  productCode: String,
                   description: String,
                   quantity: Number,
                   unitPrice: Number,
                   extendedPrice: Number
                 }]
-              } make sure you dont have anything else apart from the json 
+              } make sure you dont have anything else, apart from this json 
               `,
               },
               {
@@ -94,6 +96,18 @@ export async function chatgpt(req, res) {
             } else {
               console.log(`Successfully deleted file: ${fileName}`);
             }
+          });
+
+          jsonObject.items = jsonObject.items.map(async (item) => {
+            let mapping = await Mapping.findOne({secondaryCode: item.productCode});
+            return {
+              primaryCode: mapping? item.primaryCode : "",
+              secondaryCode: item.productCode,
+              description: item.description,
+              quantity: item.quantity,
+              unitPrice: item.unitPrice,
+              extendedPrice: item.extendedPrice,
+            };
           });
 
           return res.status(200).json({ data: jsonObject });

@@ -1,4 +1,5 @@
 import PurchaseOrder from '../models/PurchaseOrder.js';
+import Mapping from '../models/Mapping.js';
 
 export const getAllPurchaseOrders = async (req, res) => {
     try {
@@ -11,7 +12,6 @@ export const getAllPurchaseOrders = async (req, res) => {
 
 export const createPurchaseOrder = async (req, res) => {
     try {
-      console.log(req.body);
       const purchaseOrder = new PurchaseOrder(
         {
           purchaseOrderNumber: req.body.purchaseOrderNumber,
@@ -25,6 +25,19 @@ export const createPurchaseOrder = async (req, res) => {
           items: req.body.items
         }
       );
+      
+      req.body.items.forEach(async item => {
+        let mapping = await Mapping.findOne({secondaryCode: item.secondaryCode});
+        if (mapping == null) {
+          mapping = new Mapping(
+            {
+              secondaryCode: item.secondaryCode,
+              primaryCode: item.primaryCode,
+            }
+          );
+          mapping.save();
+        }
+      })
 
       purchaseOrder.save();
       res.status(201).json(purchaseOrder);

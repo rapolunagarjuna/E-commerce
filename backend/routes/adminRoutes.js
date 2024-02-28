@@ -20,6 +20,8 @@ import {
   getOrderById,
   updateOrder,
   approveOrderById,
+  getMapping,
+  createMapping,
 } from "../controllers/admin.js";
 
 import {

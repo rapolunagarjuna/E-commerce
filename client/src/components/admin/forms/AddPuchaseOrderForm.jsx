@@ -6,6 +6,8 @@ import BlueBtn from "../../BlueBtn.jsx";
 import { IoMdClose, IoMdTrash, IoIosAddCircle } from "react-icons/io";
 
 const headers = [
+  "Primary Code",
+  "Secondary Code",
   "Description",
   "Quantity",
   "Unit Price",
@@ -24,7 +26,7 @@ export default function AddPurchaseOrderForm({ visible, onClose, purchaseOrders,
   const [purchaseOrderNumber, setPurchaseOrderNumber] = useState("");
   const [buyer, setBuyer] = useState("");
   const [items, setItems] = useState([
-    { description: "", quantity: 0, unitPrice: 0 },
+     {primaryCode: "", secondaryCode: "",  description: "", quantity: 0, unitPrice: 0},
   ]);
   const [terms, setTerms] = useState("");
   const [date, setDate] = useState("");
@@ -161,6 +163,45 @@ export default function AddPurchaseOrderForm({ visible, onClose, purchaseOrders,
                       type="text"
                       rowSpan={2}
                       className="w-full h-full text-center"
+                      value={item.primaryCode || ""}
+                      onChange={(e) => {
+                        setItems(
+                          items.map((item, index) => {
+                            if (index === key) {
+                              item.primaryCode = e.target.value;
+                            }
+                            return item;
+                          })
+                        );
+                      }}
+                    />
+                  </td>
+
+                  <td className="border-2 border-primary p-2 text-lg text-center">
+                    <input
+                      type="text"
+                      rowSpan={2}
+                      className="w-full h-full text-center"
+                      value={item.secondaryCode || ""}
+                      onChange={(e) => {
+                        setItems(
+                          items.map((item, index) => {
+                            if (index === key) {
+                              item.secondaryCode = e.target.value;
+                            }
+                            return item;
+                          })
+                        );
+                      }}
+                    />
+                  </td>
+
+
+                  <td className="border-2 border-primary p-2 text-lg text-center">
+                    <input
+                      type="text"
+                      rowSpan={2}
+                      className="w-full h-full text-center"
                       value={item.description || ""}
                       onChange={(e) => {
                         setItems(
@@ -227,7 +268,7 @@ export default function AddPurchaseOrderForm({ visible, onClose, purchaseOrders,
             })}
             <tr>
               <td
-                colSpan={3}
+                colSpan={5}
                 className="border-2 cols-3 border-primary p-2 text-center text-lg font-bold bg-blue-200"
               >
                 Total Extended Price
