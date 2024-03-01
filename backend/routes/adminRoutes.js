@@ -19,9 +19,7 @@ import {
   createEmployee,
   getOrderById,
   updateOrder,
-  approveOrderById,
-  getMapping,
-  createMapping,
+  approveOrderById
 } from "../controllers/admin.js";
 
 import {

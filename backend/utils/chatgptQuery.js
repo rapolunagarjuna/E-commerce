@@ -47,7 +47,7 @@ export async function chatgpt(req, res) {
                   unitPrice: Number,
                   extendedPrice: Number
                 }]
-              } make sure you dont have anything else, apart from this json 
+              } make sure you dont have anything else, apart from this json , also the productCode doesnt start with PG and it is just not numbers
               `,
               },
               {
@@ -66,11 +66,12 @@ export async function chatgpt(req, res) {
         .post("https://api.openai.com/v1/chat/completions", payload, {
           headers: headers,
         })
-        .then((response) => {
+        .then(async (response) => {
           // Remove the backticks and any additional whitespace or newlines
           let responseString = response.data.choices[0].message.content
             .replace(/```json\n|\n```/g, "")
             .trim();
+          console.log("response from chatgpt " + responseString);
 
           // Now, parse the JSON string
           let jsonObject;
@@ -98,17 +99,22 @@ export async function chatgpt(req, res) {
             }
           });
 
-          jsonObject.items = jsonObject.items.map(async (item) => {
-            let mapping = await Mapping.findOne({secondaryCode: item.productCode});
-            return {
-              primaryCode: mapping? item.primaryCode : "",
-              secondaryCode: item.productCode,
-              description: item.description,
-              quantity: item.quantity,
-              unitPrice: item.unitPrice,
-              extendedPrice: item.extendedPrice,
-            };
-          });
+          async function processItems(items) {
+            return await Promise.all(items.map(async (item) => {
+              let mapping = await Mapping.findOne({ secondaryCode: item.productCode });
+              console.log(mapping);
+              return {
+                primaryCode: mapping ? mapping.primaryCode : "",
+                secondaryCode: item.productCode,
+                description: item.description,
+                quantity: item.quantity,
+                unitPrice: item.unitPrice,
+                extendedPrice: item.extendedPrice,
+              };
+            }));
+          }
+
+          jsonObject.items = await processItems(jsonObject.items);
 
           return res.status(200).json({ data: jsonObject });
         })
